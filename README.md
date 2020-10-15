@@ -13,6 +13,6 @@ mongo DB
 
 ### cd into the '4920_project' folder
 
-### run `npm i` to install all dependecy or packets 
+### run `npm i` or `yarn install` to install all dependecy or packets 
 
-### run `npm start` to start the project 
+### run `npm start` or `yarn start` to start the project 
