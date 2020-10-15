@@ -1,14 +1,14 @@
-# Front end
+## Front end
     react + redux
     react_router
 
-# Back end 
+## Back end 
     node js
 
-# Database
+## Database
     mongo DB
 
-# How to run it
+## How to run it
     ### Download the .zip or git clone into the direction 
     
     ### cd into the '4920_project' folder
