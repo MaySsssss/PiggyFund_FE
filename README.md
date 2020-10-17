@@ -1,18 +1,18 @@
 # Front end
-    react + redux
-    react_router
+react + redux
+react_router
 
 # Back end 
-    node js
+node js
 
 # Database
-    mongo DB
+mongo DB
 
 # How to run it
-    ### Download the .zip or git clone into the direction 
-    
-    ### cd into the '4920_project' folder
+### Download the .zip or git clone into the direction 
 
-    ### run `npm i` to install all dependecy or packets 
+### cd into the '4920_project' folder
 
-    ### run `npm start` to start the project 
+### run `npm i` or `yarn install` to install all dependecy or packets 
+
+### run `npm start` or `yarn start` to start the project 
