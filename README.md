@@ -1,15 +1,15 @@
-<<<<<<< HEAD
-# Front end
+# 4920_project
+## Front end
 react + redux
 react_router
 
-# Back end 
+## Back end 
 node js
 
-# Database
+## Database
 mongo DB
 
-# How to run it
+## How to run it
 ### Download the .zip or git clone into the direction 
 
 ### cd into the '4920_project' folder
@@ -19,9 +19,3 @@ mongo DB
 ### run `npm start` or `yarn start` to start the project 
 
 ### 
-=======
-# 4920_project
-
-## Front end 
-  Please go to `front-end` branch
->>>>>>> cc54fa6ccc57f25e4a77602b288bfbbda240d071
