@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Front end
 react + redux
 react_router
@@ -18,3 +19,9 @@ mongo DB
 ### run `npm start` or `yarn start` to start the project 
 
 ### 
+=======
+# 4920_project
+
+## Front end 
+  Please go to `front-end` branch
+>>>>>>> cc54fa6ccc57f25e4a77602b288bfbbda240d071
