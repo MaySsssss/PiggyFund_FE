@@ -5,6 +5,7 @@ import { IncomeExpenses } from '../../components/Transaction/IncomeExpenses';
 import { TransactionList } from '../../components/Transaction/TransactionList';
 import { Link } from 'react-router-dom';
 import { AddTransaction } from '../../components/Transaction/AddTransaction';
+import TrackerData from './Tracker_data'
 
 import { GlobalProvider } from '../../context/GlobalState';
 
@@ -23,6 +24,8 @@ function Tracker() {
             <Link to={`/`}>Back</Link>
         </button>
       </div>
+      <h1>Here is the data from the database</h1>
+      <TrackerData />
     </GlobalProvider>
   );
 }
