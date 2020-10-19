@@ -4,7 +4,7 @@ import { Navbar } from '../../common' ;
 import './Header.css';
 
 function Header () {
-
+  // Header Page with Logo and Nav Bar
   return (
     <section className="header">
       <section className="header-top">

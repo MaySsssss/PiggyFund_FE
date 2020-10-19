@@ -9,6 +9,7 @@ import Account from '../pages/Account/Account'
 function index() {
   return (
     <div>
+      {/* Making the router */}
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/tracker" exact component={Tracker} />

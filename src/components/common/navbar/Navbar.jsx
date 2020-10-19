@@ -5,6 +5,7 @@ import './Navbar.css'
 function Navbar () {
 
   return (
+    // Header Nav Bar and connect to the desire pages 
     <section className="navbar">
       {/* <a href="/" className="navbar-item">Home</a> */}
       <a href="/tracker" className="navbar-item">Tracker</a>
