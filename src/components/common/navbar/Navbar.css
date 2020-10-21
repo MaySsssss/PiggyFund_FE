@@ -5,9 +5,10 @@
 
 .navbar-item {
   display: flex;
+  font-size: 18px;
   justify-content: center;
   align-items: center;
-  margin-left: 30px;
+  margin-left: 50px;
   color: inherit;
   text-decoration: inherit;
   text-transform: uppercase;

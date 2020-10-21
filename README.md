@@ -17,5 +17,3 @@ mongo DB
 ### run `npm i` or `yarn install` to install all dependecy or packets 
 
 ### run `npm start` or `yarn start` to start the project 
-
-### 
