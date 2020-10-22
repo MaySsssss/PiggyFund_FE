@@ -12,7 +12,7 @@ export default class Budget extends Component {
   }
 
   getItems = _ => {
-    fetch(`https://be-4920.herokuapp.com/getall`)
+      fetch(`https://be-4920.herokuapp.com/getallbudget?fbclid=IwAR0C2suqYyAyUjzer7qjKHPLS8KvLKZILbE8LSGiOIXCiKfjkVVqNf-mTJs`)
       .then(response => response.json())
       .then(response => 
         this.setState({ 
@@ -38,7 +38,7 @@ export default class Budget extends Component {
         <div>
           {items.map(item => (
             <li key={item._id}>
-              ID: {item._id} {item.category} {item.amount} {item.currency} {item.Time}
+              ID: {item._id} {item.Category} {item.Amount} {item.Currency}
             </li>
           ))}
         </div>
