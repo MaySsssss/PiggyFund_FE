@@ -17,7 +17,7 @@ export default class Tracker_data extends Component {
   }
 
   getItems = _ => {
-    fetch(`https://ballistic-circular-parent.glitch.me/getall?fbclid=IwAR3I5jHaJwcConYQarRy4lngs-q0ozRyINwpTgWZZRKL-_T5rWeZnHwbtCY`)
+    fetch(`https://be-4920.herokuapp.com/getall?fbclid=IwAR3I5jHaJwcConYQarRy4lngs-q0ozRyINwpTgWZZRKL-_T5rWeZnHwbtCY`)
       .then(response => response.json())
       .then(response => 
         this.setState({ 
@@ -34,7 +34,7 @@ export default class Tracker_data extends Component {
 
   addItems = _ => {
     const { datas } = this.state;
-    fetch(`https://ballistic-circular-parent.glitch.me/spending?category=${datas.category}&amount=${datas.amount}&fbclid=IwAR3ruVBFMXI2d-mgnolt0OCgP3UPI2i2ogs_HNDtVGEjgWbzN8XDpzsKK6w`)
+    fetch(`https://be-4920.herokuapp.com/spending?category=${datas.category}&amount=${datas.amount}&fbclid=IwAR3ruVBFMXI2d-mgnolt0OCgP3UPI2i2ogs_HNDtVGEjgWbzN8XDpzsKK6w`)
       .then(console.log('Add item success'))
       .then(this.getItems)
       .catch(error => 
