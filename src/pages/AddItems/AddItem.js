@@ -52,7 +52,7 @@ export default class AddItem extends Component {
             </label> 
             <DatePicker 
               style={{ width: 400 }}
-              showTime 
+              // showTime 
               size="large" 
               onChange={this.onChange} 
               onOk={onOk} 
