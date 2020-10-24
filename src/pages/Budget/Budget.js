@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Chart } from '../../components/Budget/Chart';
 
 export default class Budget extends Component {
     state = {
@@ -34,7 +35,7 @@ export default class Budget extends Component {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      return (
+      return (<>
         <div>
           {items.map(item => (
             <li key={item._id}>
@@ -42,7 +43,8 @@ export default class Budget extends Component {
             </li>
           ))}
         </div>
-      );
+        <Chart />
+      </>);
     }
   }
 }
