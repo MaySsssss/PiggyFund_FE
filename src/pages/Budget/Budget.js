@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Chart } from '../../components/Budget/Chart';
+import { GlobalProvider } from '../../context/GlobalState_budget';
 
 export default class Budget extends Component {
     state = {
@@ -12,7 +14,7 @@ export default class Budget extends Component {
   }
 
   getItems = _ => {
-    fetch(`https://be-4920.herokuapp.com/getall`)
+      fetch(`https://be-4920.herokuapp.com/getallbudget?fbclid=IwAR0C2suqYyAyUjzer7qjKHPLS8KvLKZILbE8LSGiOIXCiKfjkVVqNf-mTJs`)
       .then(response => response.json())
       .then(response => 
         this.setState({ 
@@ -27,24 +29,29 @@ export default class Budget extends Component {
       )
   }
 
-  render() {
+    render() {
     const { error, isLoaded, items } = this.state;
     if (error) {
-      return <div>Error: {error.message}</div>;
+        return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+        return <div>Loading...</div>;
     } else {
-      return (
-        <div>
-          {items.map(item => (
-            <li key={item._id}>
-              ID: {item._id} {item.category} {item.amount} {item.currency} {item.Time}
-            </li>
-          ))}
-        </div>
-      );
+        return (<>
+            <GlobalProvider>
+                <div className="container">
+                    <div>
+                        {items.map(item => (
+                        <li key={item._id}>
+                            ID: {item._id} {item.Category} {item.Amount} {item.Currency}
+                        </li>
+                        ))}
+                    </div>
+                    <Chart />
+                </div>
+            </GlobalProvider>
+        </>);
     }
-  }
+    }
 }
 
  
