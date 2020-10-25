@@ -45,20 +45,16 @@ export default class AddItem extends Component {
     const { datas } = this.state;
     return (
       <div>
-        <div className="additem-input">
-          
+        <div className="datepicker-input">
             <label htmlFor="text">
               Select a date:
-            </label> 
-            <DatePicker 
-              style={{ width: 330 }}
-              // showTime 
+            </label>
+        </div>
+        <DatePicker className='date-input' 
               size="large" 
               onChange={this.onChange} 
               onOk={onOk} 
-            />
-         
-        </div>
+        />
         <div className="additem-input">
           <label htmlFor="text">
             Category:
