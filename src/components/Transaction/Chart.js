@@ -42,7 +42,7 @@ export const Chart = () => {
         options={{
           title:{
             display: true,
-            text:'',
+            
             fontSize:20
           },
           legend:{

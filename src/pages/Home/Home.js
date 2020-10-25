@@ -12,11 +12,11 @@ const { Meta } = Card;
 export default class Home extends Component {
   render() {
     return (
-      <div className="home-card">
-        <Row gutter={16}>
-          <Col span={8}>
+      <div >
+        <Row className="home-card">
+          <Col>
             <Card
-              style={{ width: 300 }}
+              
               cover={
                 <img
                   alt="example"
@@ -34,10 +34,13 @@ export default class Home extends Component {
                 />
               </Link>
             </Card>
-          </Col>
-          <Col span={8}>
+          </Col>   
+        </Row>
+
+        <Row className="home-card">
+        <Col>
             <Card
-              style={{ width: 300 }}
+              
               cover={
                 <img
                   alt="example"
@@ -55,7 +58,7 @@ export default class Home extends Component {
                 />
               </Link>
             </Card>
-          </Col>
+          </Col>  
         </Row>
       </div>
     )
