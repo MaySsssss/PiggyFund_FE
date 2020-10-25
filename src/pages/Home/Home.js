@@ -12,55 +12,19 @@ const { Meta } = Card;
 export default class Home extends Component {
   render() {
     return (
-      <div >
-        <Row className="home-card">
-          <Col>
-            <Card
-              
-              cover={
-                <img
-                  alt="example"
-                  src={require('../../picture/home1.jpg')}
-                />
-              }
-              // actions={[
-              //   <EditOutlined key="edit" />,
-              // ]}
-            >
-              <Link to="/additems/" >
-                <Meta
-                  title="Add Transcation"
-                  description="Record your income and expense"
-                />
-              </Link>
-            </Card>
-          </Col>   
-        </Row>
+      
+      <div className="container">
+        <Link to="/additems">
+          <button className='back-btn' type="primary">Add Transcation</button>
+        </Link>
 
-        <Row className="home-card">
-        <Col>
-            <Card
-              
-              cover={
-                <img
-                  alt="example"
-                  src={require('../../picture/home2.jpg')}
-                />
-              }
-              // actions={[
-              //   <EditOutlined key="edit" />,
-              // ]}
-            >
-              <Link to="/budget/" >
-                <Meta
-                  title="Add Budget"
-                  description="Manage your future spends"
-                />
-              </Link>
-            </Card>
-          </Col>  
-        </Row>
+        <Link to="/budget">
+          <button className='back-btn' type="primary">Add Budget</button>
+        </Link>
+        
       </div>
     )
   }
 }
+
+
