@@ -18,12 +18,14 @@ function Tracker() {
       <div className="container">
         <Balance />
         <Chart />
-        <IncomeExpenses />
-        <TransactionList />
         
+        <IncomeExpenses />
         <Link to="/additems">
           <button className='back-btn' type="primary">Add Transcation</button>
         </Link>
+        <TransactionList />
+        
+        
       </div>
     </GlobalProvider>
   );
