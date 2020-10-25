@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useState, useEffect } from 'react';
-import AppReducer from './AppReducer';
+import AppReducer from './AppReducer_budget';
 
-const ITME_API = `https://be-4920.herokuapp.com/getallbudget?fbclid=IwAR0C2suqYyAyUjzer7qjKHPLS8KvLKZILbE8LSGiOIXCiKfjkVVqNf-mTJs`
+const ITME_API = `https://be-4920.herokuapp.com/getallbudget`
 
 // Initial state
 const initialState = {
@@ -28,25 +28,24 @@ export const GlobalProvider = ({ children }) => {
   })
 
   // Actions
-    /*
-  function deleteTransaction(id) {
+  function deleteBudget(id) {
     dispatch({
-      type: 'DELETE_TRANSACTION',
+      type: 'DELETE_BUDGET',
       payload: id
     });
   }
 
-  function addTransaction(transaction) {
+  function addBudget(budget) {
     dispatch({
-      type: 'ADD_TRANSACTION',
-      payload: transaction
+      type: 'ADD_BUDGET',
+      payload: budget
     });
-  }*/
+  }
 
   return (<GlobalContext.Provider value={{
-    budgets: state.budgets/*,
-    deleteTransaction,
-    addTransaction*/
+    budgets: state.budgets,
+    deleteBudget,
+    addBudget
   }}>
     {children}
   </GlobalContext.Provider>);
