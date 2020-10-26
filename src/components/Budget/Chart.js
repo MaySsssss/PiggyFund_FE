@@ -1,5 +1,5 @@
 
-import {Doughnut} from 'react-chartjs-2';
+import {Bar, Doughnut} from 'react-chartjs-2';
 import { GlobalContext } from '../../context/GlobalState_budget';
 import { ColourGenerator } from './ColourGenerator';
 import React, { useContext } from 'react';
@@ -12,9 +12,9 @@ export const Chart = () => {
 
         budgets.forEach(function (i) {
             if (groups.hasOwnProperty(i.category)) {
-                groups[i.Category] += 10;
+                groups[i.Category] += i.Amount;
             } else {
-                groups[i.Category] = 10;
+                groups[i.Category] = i.Amount;
             }
         });
 
@@ -27,53 +27,47 @@ export const Chart = () => {
         return result;
     }
 
-    function hoverColourGenerator(original) {
-        var oldLetters = '89ABCDEF';
-        var newLetters = '01234567';
-        var result = [];
-        for (var i = 0; i < original.length; i++) {
-            var oldColour = original[i];
-            var newColour = '#';
-            for (var j = 1; j < 7; j++) {
-                newColour += newLetters[oldLetters.indexOf(oldColour[j])];
-            }
-            result.push(newColour)
-        }
-        return result;
-    }
-
     const grouped = groupBudgets(budgets);
     const colours = ColourGenerator.getInstance(grouped.length);
 
-  const state = {
+    const state = {
     labels: grouped.map(b => b.Category),
     datasets: [
-      {
+        {
         label: 'Budgets',
-        backgroundColor: colours,
-        hoverBackgroundColor: hoverColourGenerator(colours),
+        backgroundColor: colours[0],
+        hoverBackgroundColor: colours[1],
         data: grouped.map(b => b.Amount)
-      }
+        }
     ]
-  }
-  return (
-    <h2>
-      <Doughnut
-        data={state}
-        options={{
-          title:{
+    }
+
+    const options = {
+        title: {
             display: true,
             text:'',
             fontSize:20
-          },
-          legend:{
+            },
+        legend: {
             display: true,
             position:'right'
-          }
-        }}
-      />
+            }
+    }
+
+    return (
+    <h2>
+        <Doughnut
+        data={state}
+        options={options}
+        />
+        <Bar
+            data={state}
+            width={100}
+            height={50}
+            options={options}
+        />
     </h2>
-  )
+    )
 }
   
 
