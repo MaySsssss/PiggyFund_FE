@@ -15,7 +15,7 @@ export default class Budget extends Component {
   }
 
   getItems = _ => {
-      fetch(`https://be-4920.herokuapp.com/getallbudget?fbclid=IwAR0C2suqYyAyUjzer7qjKHPLS8KvLKZILbE8LSGiOIXCiKfjkVVqNf-mTJs`)
+      fetch(`https://ballistic-circular-parent.glitch.me/getallbudget`)
       .then(response => response.json())
       .then(response => 
         this.setState({ 
