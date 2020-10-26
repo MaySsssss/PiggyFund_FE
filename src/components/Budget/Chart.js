@@ -12,9 +12,9 @@ export const Chart = () => {
 
         budgets.forEach(function (i) {
             if (groups.hasOwnProperty(i.category)) {
-                groups[i.Category] += 10;
+                groups[i.Category] += i.Amount;
             } else {
-                groups[i.Category] = 10;
+                groups[i.Category] = i.Amount;
             }
         });
 

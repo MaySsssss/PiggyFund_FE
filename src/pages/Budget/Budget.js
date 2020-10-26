@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Chart } from '../../components/Budget/Chart';
+import { BudgetList } from '../../components/Budget/BudgetList';
 import { GlobalProvider } from '../../context/GlobalState_budget';
 
 export default class Budget extends Component {
@@ -47,6 +48,7 @@ export default class Budget extends Component {
                         ))}
                     </div>
                     <Chart />
+                    <BudgetList />
                 </div>
             </GlobalProvider>
         </>);
