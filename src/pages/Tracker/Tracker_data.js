@@ -54,11 +54,13 @@ export default class Tracker_data extends Component {
     } else {
       return (
         <div>
-          {items.map(item => (
-            <li key={item._id}>
-              ID: {item._id} {item.category} {item.amount} {item.currency} {item.Time}
-            </li>
-          ))}
+          <label>
+            {items.map(item => (
+              <li key={item._id}>
+                ID: {item._id} {item.category} {item.amount} {item.currency} {item.Time}
+              </li>
+            ))}
+          </label> 
 
           <label>
             Category:
@@ -67,6 +69,7 @@ export default class Tracker_data extends Component {
                 onChange={e => this.setState({ datas: { ...datas, category: e.target.value}})}
               />
           </label>
+          
           <label>
             Amount:
             <input 
