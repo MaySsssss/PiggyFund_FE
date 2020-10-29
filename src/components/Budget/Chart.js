@@ -1,5 +1,5 @@
 
-import {Bar, Doughnut} from 'react-chartjs-2';
+import {Bar, Doughnut, Line} from 'react-chartjs-2';
 import { GlobalContext } from '../../context/GlobalState_budget';
 import { ColourGenerator } from './ColourGenerator';
 import React, { useContext } from 'react';
@@ -42,6 +42,16 @@ export const Chart = () => {
     ]
     }
 
+    const per_day = {
+        labels:['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [
+            {
+            label: 'Budgets_per_day',
+            data: [180, 150, 390, 270, 200, 430, 380]    
+            }
+        ]
+    }
+
     const options = {
         title: {
             display: true,
@@ -65,6 +75,13 @@ export const Chart = () => {
             width={100}
             height={50}
             options={options}
+        />
+        <h2>Daily Spend</h2>
+        <Line
+            data={per_day}
+            width = {100}
+            height={50}
+            options = {options}
         />
     </h2>
     )
