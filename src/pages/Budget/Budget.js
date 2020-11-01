@@ -1,58 +1,147 @@
 import React, { Component } from 'react'
+import { Header } from '../../components/Budget/Header';
 import { Chart } from '../../components/Budget/Chart';
 import { BudgetList } from '../../components/Budget/BudgetList';
 import { GlobalProvider } from '../../context/GlobalState_budget';
+import { months } from 'moment';
+
+import '../Tracker/Tracker.css'
+import { notification, Drawer, Form, Col, Row } from 'antd';
+
+function onOk(value) {
+    console.log('onOk: ', value);
+}
 
 export default class Budget extends Component {
     state = {
-      error: null,
-      isLoaded: false,
-      items: []
+        visible: false,
+        error: null,
+        isLoaded: false,
+        datas: {
+            amount: "",
+            category: "",
+            month: ""
+        }
     };
 
-  componentDidMount() {
-    this.getItems()
-  }
-
-  getItems = _ => {
-      fetch(`https://ballistic-circular-parent.glitch.me/getallbudget`)
-      .then(response => response.json())
-      .then(response => 
-        this.setState({ 
-          isLoaded: true,
-          items: response 
-        }))
-      .catch(error => 
+    showDrawer = () => {
         this.setState({
-          isLoaded: true,
-          error: error
-        })
-      )
-  }
+            visible: true,
+        });
+    };
+
+    onClose = () => {
+        this.setState({
+            visible: false,
+        });
+    };
+
+    openNotificationWithIcon = type => {
+        notification[type]({
+            message: 'Add',
+            description:
+                'Add new budget success.',
+        });
+    };
+
+    addBudget = _ => {
+        const { datas } = this.state;
+        fetch(`https://be-4920.herokuapp.com/updateBudget?category=${datas.category}&amount=${datas.amount}&month=${datas.month}`)
+            .then(console.log('Add budget success'))
+            .catch(error =>
+                this.setState({
+                    isLoaded: true,
+                    error: error
+                })
+            )
+    };
 
     render() {
-    const { error, isLoaded, items } = this.state;
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div>Loading...</div>;
-    } else {
+        const { datas } = this.state;
         return (<>
             <GlobalProvider>
+                <Header />
                 <div className="container">
-                    <div>
-                        {items.map(item => (
-                        <li key={item._id}>
-                            ID: {item._id} {item.Category} {item.Amount} {item.Currency}
-                        </li>
-                        ))}
-                    </div>
                     <Chart />
                     <BudgetList />
+                    <button className='back-btn' onClick={this.showDrawer} type="primary">Add Budget</button>
+                    <Drawer
+                        title="Add a new budget"
+                        width={520}
+                        onClose={this.onClose}
+                        visible={this.state.visible}
+                        bodyStyle={{ paddingBottom: 80 }}
+                        footer={
+                            <div
+                                style={{
+                                    textAlign: 'right',
+                                }}
+                            >
+                                <button className='additem-btn' type="primary" onClick={this.onClose} style={{ marginRight: 8 }}>Cancel</button>
+                                <button className='additem-btn' onClick={() => { this.addBudget(); this.openNotificationWithIcon('success'); this.onClose(); }} type="primary">Add Budget</button>
+                            </div>
+                        }
+                    >
+                        <Form layout="vertical" hideRequiredMark>
+                            <Row gutter={16}>
+                                <Col span={24}>
+                                    <Form.Item
+                                        name="month"
+                                        label="month"
+                                        rules={[{ required: true, message: 'Please choose the month' }]}
+                                    >
+                                        <select className='date-input'
+                                            onChange={e => this.setState({ datas: { ...datas, month: e.target.value } })}
+                                            onOk={onOk}
+                                        >
+                                            {months().map(month => {
+                                                if (month == datas.month) {
+                                                    return (<option value={month} selected>{month}</option>)
+                                                } else {
+                                                    return (<option value={month}>{month}</option>)
+                                                }
+                                            })}
+                                        </select>
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+                            <Row gutter={16}>
+                                <Col span={24}>
+                                    <Form.Item
+                                        name="category"
+                                        label="Category"
+                                        rules={[{ required: true, message: 'Please enter the category' }]}
+                                    >
+                                        <input
+                                            type="text"
+                                            placeholder="Enter catagory..."
+                                            value={datas.category}
+                                            onChange={e => this.setState({ datas: { ...datas, category: e.target.value } })}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+                            <Row gutter={16}>
+                                <Col span={24}>
+                                    <Form.Item
+                                        name="amount"
+                                        label="Amount"
+                                        rules={[{ required: true, message: 'Please enter the amount' }]}
+                                    >
+                                        <input
+                                            type="number"
+                                            placeholder="Enter Amount..."
+                                            value={datas.amount}
+                                            onChange={e => this.setState({ datas: { ...datas, amount: e.target.value } })}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Drawer>
                 </div>
             </GlobalProvider>
         </>);
-    }
     }
 }
 

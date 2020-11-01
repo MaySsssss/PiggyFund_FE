@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useState, useEffect } from 'react';
 import AppReducer from './AppReducer_budget';
 
-const ITME_API = `https://ballistic-circular-parent.glitch.me/getallbudget`
+const ITME_API = `https://be-4920.herokuapp.com/getallbudget`
 
 // Initial state
 const initialState = {

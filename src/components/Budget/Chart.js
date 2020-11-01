@@ -11,7 +11,7 @@ export const Chart = () => {
         var groups = {};
 
         budgets.forEach(function (i) {
-            if (groups.hasOwnProperty(i.category)) {
+            if (groups.hasOwnProperty(i.Category)) {
                 groups[i.Category] += i.Amount;
             } else {
                 groups[i.Category] = i.Amount;
