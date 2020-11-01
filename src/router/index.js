@@ -12,8 +12,8 @@ function index() {
     <div>
       {/* Making the router */}
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/tracker" exact component={Tracker} />
+          {/* <Route path="/" exact component={Home} /> */}
+          <Route path="/" exact component={Tracker} />
           <Route path="/budget" exact component={Budget} />
           <Route path="/export" exact component={Export} />
           <Route path="/account" exact component={Account} />
