@@ -1,6 +1,3 @@
-var time = 0;
-var colourLock = false;
-
 export var ColourGenerator = (function () {
     var instance;
     var n = 0;
@@ -46,16 +43,9 @@ export var ColourGenerator = (function () {
 
     return {
         getInstance: function (amount) {
-            while (colourLock);
-            colourLock = true;
-            if (time > 3 || n != amount || !instance) {
-                time = 0;
-                colourLock = false;
+            if (n != amount || !instance) {
                 n = amount;
                 instance = createInstance(amount);
-            } else {
-                time++;
-                colourLock = false;
             }
             return instance;
         }
