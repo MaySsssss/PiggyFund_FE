@@ -6,7 +6,7 @@ import { notification } from 'antd';
 export const Transaction = ({ transaction }) => {
 
   function deleteTransaction(id) {
-    fetch(`http://ballistic-circular-parent.glitch.me/deletespending?id=${id}`)
+    fetch(`http://be-4920.herokuapp.com/deletespending?id=${id}`)
       .then(console.log('delete', id))
       .catch(error => 
         console.log(error)

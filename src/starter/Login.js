@@ -1,0 +1,159 @@
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import LockIcon from '@material-ui/icons/Lock';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100vh',
+  },
+  image: {
+    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export default function Login() {
+
+  const classes = useStyles();
+  
+  let [data, setData] = useState({
+    email: '',
+    password: '',
+    errors: {}
+  });
+
+  const onChange = e => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+
+  const validate = () => {
+    let email = data.email;
+    let password = data.password;
+    
+    let errors = {};
+    let isValid = true;
+
+    if (email !== "admin@gmail.com") {
+      isValid = false;
+      errors["email"] = "Please use 'admin@gmail.com' as test";
+    }
+
+    if (password !== "admin") {
+      isValid = false;
+      errors["password"] = "Please use 'admin' as test";
+    }
+
+    setData({ ...data, errors: errors });
+
+    return isValid;
+  }
+
+  const history = useHistory();
+  
+  const submitData = () => {
+    console.log(data)
+    if (validate()) {
+      console.log('login success')
+      history.push('/tracker')
+    }
+  }
+
+  let { email, password } = data;
+  
+  return (
+    <div>
+      <Grid container component="main" className={classes.root}>
+        {/* <CssBaseline /> */}
+        <Grid item xs={false} sm={4} md={7} className={classes.image} />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            {/* <form className={classes.form}> */}
+              <TextField 
+                onChange={(e) => onChange(e)} 
+                value={email} 
+                name="email" 
+                label="Email"
+                type="email" 
+                placeholder="Enter your email" 
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                autoComplete="email"
+              />
+              <div className="text-danger">{data.errors.email}</div>
+              <TextField 
+                onChange={(e) => onChange(e)} 
+                value={password} 
+                name="password" 
+                label="Password"
+                type="password" 
+                placeholder="Enter password" 
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                autoComplete="password"
+              />
+              <div className="text-danger">{data.errors.password}</div>
+              <Button 
+                onClick={() => submitData()}
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Submit
+              </Button>
+
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <Link href="/register" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
+            {/* </form> */}
+          </div>
+        </Grid>
+      </Grid>
+    </div>
+  )
+}
