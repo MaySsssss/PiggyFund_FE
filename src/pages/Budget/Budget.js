@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Header } from '../../components/Budget/Header';
 import { Chart } from '../../components/Budget/Chart';
 import { BudgetList } from '../../components/Budget/BudgetList';
 import { GlobalProvider } from '../../context/GlobalState_budget';
@@ -39,14 +40,9 @@ export default class Budget extends Component {
     } else {
         return (<>
             <GlobalProvider>
+            
                 <div className="container">
-                    <div>
-                        {items.map(item => (
-                        <li key={item._id}>
-                            ID: {item._id} {item.Category} {item.Amount} {item.Currency}
-                        </li>
-                        ))}
-                    </div>
+                    <Header />
                     <Chart />
                     <BudgetList />
                 </div>
