@@ -71,6 +71,7 @@ export default class Tracker extends Component {
       <GlobalProvider>
         <Header />
         <div className="container">
+          <div className="left_container">
           <Balance />
           <Chart />
           <IncomeExpenses />
@@ -143,7 +144,13 @@ export default class Tracker extends Component {
               </Row>
             </Form>
           </Drawer>
-          <TransactionList />
+          </div>
+
+          <div className="right_container">
+            <TransactionList />
+          </div>
+          
+          
           
           
         </div>
