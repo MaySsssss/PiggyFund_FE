@@ -25,7 +25,7 @@ export const Chart = () => {
         label: 'Balance',
         backgroundColor: [
           '#B21F00',
-          '#C9DE00'
+          '#2ecc71'
         ],
         hoverBackgroundColor: [
         '#501800',
