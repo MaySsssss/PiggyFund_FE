@@ -42,6 +42,18 @@
   float: right;
 }
 
+h2 {
+  margin: 40px 0 10px;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.header_budget {
+  margin: 40px 0 -30px;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
 h1 {
   letter-spacing: 1px;
   margin: 0;

@@ -40,11 +40,10 @@ export default class Budget extends Component {
     } else {
         return (<>
             <GlobalProvider>
-            
+            <Header />
                 <div className="container">
-                  
+
                   <div className="left_container">
-                    <Header />
                     <Chart />
                     <button className='back-btn' onClick={this.showDrawer} type="primary">Add Budget</button>
                   </div>
