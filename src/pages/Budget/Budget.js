@@ -3,7 +3,7 @@ import { Header } from '../../components/Budget/Header';
 import { Chart } from '../../components/Budget/Chart';
 import { BudgetList } from '../../components/Budget/BudgetList';
 import { GlobalProvider } from '../../context/GlobalState_budget';
-import { months } from 'moment';
+import moment, { months } from 'moment';
 
 import '../Tracker/Tracker.css'
 import { notification, Drawer, Form, Col, Row } from 'antd';
@@ -61,6 +61,18 @@ export default class Budget extends Component {
         return (<>
             <GlobalProvider>
                 <Header />
+                <select
+                    onChange={e => GlobalProvider.setMonthToDisplay(e.target.value)}
+                    onOk={onOk}
+                >
+                    {months().map(month => {
+                        if (moment().format('MMMM').localeCompare(month) == 0) {
+                            return (<option value={month} selected>{month}</option>)
+                        } else {
+                            return (<option value={month}>{month}</option>)
+                        }
+                    })}
+                </select>
                 <div className="container">
                     <Chart />
                     <BudgetList />
@@ -87,7 +99,7 @@ export default class Budget extends Component {
                                 <Col span={24}>
                                     <Form.Item
                                         name="month"
-                                        label="month"
+                                        label="Month"
                                         rules={[{ required: true, message: 'Please choose the month' }]}
                                     >
                                         <select className='date-input'
@@ -95,7 +107,7 @@ export default class Budget extends Component {
                                             onOk={onOk}
                                         >
                                             {months().map(month => {
-                                                if (month == datas.month) {
+                                                if (month.localeCompare(datas.month) == 0 || (!(datas.month) && moment().format('MMMM').localeCompare(month) == 0)) {
                                                     return (<option value={month} selected>{month}</option>)
                                                 } else {
                                                     return (<option value={month}>{month}</option>)
