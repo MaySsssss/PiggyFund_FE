@@ -47,7 +47,7 @@
 }
 
 h2 {
-  margin: 40px 0 10px;
+  margin: 10px 0 0px;
   text-transform: uppercase;
   font-size: 30px;
   
@@ -55,7 +55,7 @@ h2 {
 }
 
 .header_budget {
-  margin: 40px 0 -30px;
+  margin: 50px 0 -30px;
   text-transform: uppercase;
   font-size: 30px;
   
@@ -70,7 +70,7 @@ h1 {
 h3 {
   border-bottom: 1px solid #bbb;
   padding-bottom: 10px;
-  margin: 40px 0 10px;
+  margin: 10px 0 10px;
 }
 
 h4 {
@@ -148,6 +148,8 @@ input[type='number'] {
   list-style-type: none;
   padding: 0;
   margin-bottom: 40px;
+  height: 400px;
+  overflow-y: scroll;
 }
 
 .list li {
