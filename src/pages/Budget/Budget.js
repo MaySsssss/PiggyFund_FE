@@ -60,7 +60,6 @@ export default class Budget extends Component {
         const { datas } = this.state;
         return (<>
             <GlobalProvider>
-            <Header />
                 <div className="container">
                   <div className="left_container">
                     <Chart />
