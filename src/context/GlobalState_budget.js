@@ -17,10 +17,10 @@ const initialState = {
 }
 
 // Create context
-export const GlobalContext = createContext(initialState);
+export const GlobalContext_budget = createContext(initialState);
 
 // Provider component
-export const GlobalProvider = ({ children }) => {
+export const GlobalProvider_budget = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
     const [list, setList] = useState([]);
 
@@ -40,7 +40,7 @@ export const GlobalProvider = ({ children }) => {
         state.month = month;
     };
 
-    return (<GlobalContext.Provider value={{
+    return (<GlobalContext_budget.Provider value={{
         budgets: state.budgets.filter(budget => { return budget.Month.localeCompare(state.month) == 0; })
     }}>
         <Header />
@@ -57,5 +57,5 @@ export const GlobalProvider = ({ children }) => {
             })}
         </select>
         {children}
-  </GlobalContext.Provider>);
+    </GlobalContext_budget.Provider>);
 }

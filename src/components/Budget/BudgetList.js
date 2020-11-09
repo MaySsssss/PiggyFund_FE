@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import { Budget } from './Budget';
 import moment from 'moment';
 
-import { GlobalContext } from '../../context/GlobalState_budget';
+import { GlobalContext_budget } from '../../context/GlobalState_budget';
 
 export const BudgetList = () => {
-    const { budgets } = useContext(GlobalContext);
-    var results = budgets.filter(item => item.Month == moment().format('MMMM'));
+    const { budgets } = useContext(GlobalContext_budget);
 
     return (
         <>
@@ -17,8 +16,8 @@ export const BudgetList = () => {
                         <>
                             <div className="warp">
                                 <Budget key={budget._id} budget={budget} />
-                                <div className="progressBar" width="400px">
-                                    <div className="progress" width="1px"></div>
+                                <div className="progressBar">
+                                    <div className="progress" style={{width: 1}}></div>
                                 </div>
                             </div>
                         </>

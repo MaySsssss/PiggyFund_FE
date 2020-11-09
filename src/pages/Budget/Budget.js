@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Header } from '../../components/Budget/Header';
 import { Chart } from '../../components/Budget/Chart';
 import { BudgetList } from '../../components/Budget/BudgetList';
-import { GlobalProvider } from '../../context/GlobalState_budget';
+import { GlobalProvider_budget } from '../../context/GlobalState_budget';
 import moment, { months } from 'moment';
 
 import '../Tracker/Tracker.css'
@@ -59,7 +58,7 @@ export default class Budget extends Component {
     render() {
         const { datas } = this.state;
         return (<>
-            <GlobalProvider>
+            <GlobalProvider_budget>
                 <div className="container">
                   <div className="left_container">
                     <Chart />
@@ -144,7 +143,7 @@ export default class Budget extends Component {
                         </Form>
                     </Drawer>
                 </div>
-            </GlobalProvider>
+            </GlobalProvider_budget>
         </>);
     }
 }

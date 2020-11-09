@@ -1,11 +1,11 @@
 
 import {Bar, Doughnut} from 'react-chartjs-2';
-import { GlobalContext } from '../../context/GlobalState_budget';
+import { GlobalContext_budget } from '../../context/GlobalState_budget';
 import { ColourGenerator } from './ColourGenerator';
 import React, { useContext } from 'react';
 
 export const Chart = () => {
-    const { budgets } = useContext(GlobalContext);
+    const { budgets } = useContext(GlobalContext_budget);
 
     function groupBudgets(budgets) {
         var groups = {};
