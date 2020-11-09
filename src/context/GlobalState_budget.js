@@ -2,6 +2,7 @@ import React, { createContext, useReducer, useState, useEffect } from 'react';
 import AppReducer from './AppReducer_budget';
 import moment, { months } from 'moment';
 import { Header } from '../components/Budget/Header';
+import '../components/Budget/Progress.css'
 
 function onOk(value) {
     console.log('onOk: ', value);
