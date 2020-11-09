@@ -1,9 +1,6 @@
-var time = 0;
-
 export var ColourGenerator = (function () {
     var instance;
     var n = 0;
-    var timer;
 
     function createInstance(amount) {
         var letters = '0123456789ABCDEF';
@@ -41,17 +38,12 @@ export var ColourGenerator = (function () {
                 i--;
             }
         }
-        timer = setInterval(function () {
-            time--;
-        }, 1000);
         return [colours, hoverColours];
     }
 
     return {
         getInstance: function (amount) {
-            if (!instance || n != amount || time == 0) {
-                clearInterval(timer);
-                time = 3;
+            if (n != amount || !instance) {
                 n = amount;
                 instance = createInstance(amount);
             }

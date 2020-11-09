@@ -11,7 +11,7 @@ export const Chart = () => {
         var groups = {};
 
         budgets.forEach(function (i) {
-            if (groups.hasOwnProperty(i.category)) {
+            if (groups.hasOwnProperty(i.Category)) {
                 groups[i.Category] += i.Amount;
             } else {
                 groups[i.Category] = i.Amount;
@@ -54,6 +54,16 @@ export const Chart = () => {
             }
     }
 
+    const scale = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+
     return (
     <h2>
         <Doughnut
@@ -61,10 +71,10 @@ export const Chart = () => {
         options={options}
         />
         <Bar
-            data={state}
-            width={100}
-            height={50}
-            options={options}
+                data={state}
+                width={100}
+                height={50}
+                options={options, scale}
         />
     </h2>
     )
