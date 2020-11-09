@@ -55,7 +55,7 @@ h2 {
 }
 
 .header_budget {
-  margin: 50px 0 -30px;
+  margin: 10px 0 0px;
   text-transform: uppercase;
   font-size: 30px;
   
@@ -160,7 +160,7 @@ input[type='number'] {
   justify-content: space-between;
   position: relative;
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px 20px;
 }
 
 .list li.plus {
@@ -174,6 +174,7 @@ input[type='number'] {
 .delete-btn {
   cursor: pointer;
   background-color: #e74c3c;
+  
   border: 0;
   color: #fff;
   font-size: 20px;
@@ -181,7 +182,7 @@ input[type='number'] {
   padding: 2px 5px;
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 0%;
   transform: translate(-100%, -50%);
   opacity: 0;
   transition: opacity 0.3s ease;
