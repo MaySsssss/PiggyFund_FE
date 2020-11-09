@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Header } from '../../components/Budget/Header';
 import { Chart } from '../../components/Budget/Chart';
 import { BudgetList } from '../../components/Budget/BudgetList';
 import { GlobalProvider } from '../../context/GlobalState_budget';
@@ -59,10 +60,16 @@ export default class Budget extends Component {
         const { datas } = this.state;
         return (<>
             <GlobalProvider>
+            <Header />
                 <div className="container">
+                  <div className="left_container">
                     <Chart />
-                    <BudgetList />
                     <button className='back-btn' onClick={this.showDrawer} type="primary">Add Budget</button>
+                  </div>
+
+                  <div className="right_container">
+                    <BudgetList />
+                  </div>
                     <Drawer
                         title="Add a new budget"
                         width={520}

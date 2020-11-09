@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import GetAppIcon from '@material-ui/icons/GetAppRounded';
 import PersonIcon from '@material-ui/icons/PersonRounded';
+import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
 import CsvDownload from 'react-json-to-csv';
 
 import Button from '@material-ui/core/Button';
@@ -38,6 +39,7 @@ function Navbar () {
     <section className="navbar">
       {/* <a href="/" className="navbar-item">Home</a> */}
       {/*<a href="/" className="navbar-item">Tracker</a>*/}
+      
       <a href="/budget" className="navbar-item">Budget</a>
       
       <div className="navbar-item" onClick={handleClickOpen}>
@@ -86,6 +88,10 @@ function Navbar () {
 
       <a href="/account" className="navbar-item">
         <PersonIcon style={{ color: '#404040', fontSize: 24 }}/>
+      </a>
+
+      <a href="/" className="navbar-item">
+        <ExitToAppIcon style={{ color: '#404040', fontSize: 24 }}/>
       </a>
 
     </section>

@@ -25,7 +25,7 @@ export const Chart = () => {
         label: 'Balance',
         backgroundColor: [
           '#B21F00',
-          '#C9DE00'
+          '#2ecc71'
         ],
         hoverBackgroundColor: [
         '#501800',
@@ -36,7 +36,7 @@ export const Chart = () => {
     ]
   }
   return (
-    <h2>
+    <div className="donut_chart">
       <Doughnut
         data={state}
         options={{
@@ -51,7 +51,7 @@ export const Chart = () => {
           }
         }}
       />
-    </h2>
+    </div>
   )
 }
   

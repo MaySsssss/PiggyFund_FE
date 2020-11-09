@@ -49,7 +49,7 @@ export default class Tracker extends Component {
 
   addItems = _ => {
     const { datas, date } = this.state;
-    fetch(`https://ballistic-circular-parent.glitch.me/spending?category=${datas.category}&amount=${datas.amount}&fbclid=IwAR3ruVBFMXI2d-mgnolt0OCgP3UPI2i2ogs_HNDtVGEjgWbzN8XDpzsKK6w&time=${date}`)
+    fetch(`https://be-4920.herokuapp.com/spending?category=${datas.category}&amount=${datas.amount}&fbclid=IwAR3ruVBFMXI2d-mgnolt0OCgP3UPI2i2ogs_HNDtVGEjgWbzN8XDpzsKK6w&time=${date}`)
       .then(console.log('Add item success'))
       .catch(error => 
         this.setState({
@@ -71,6 +71,7 @@ export default class Tracker extends Component {
       <GlobalProvider>
         <Header />
         <div className="container">
+          <div className="left_container">
           <Balance />
           <Chart />
           <IncomeExpenses />
@@ -143,7 +144,13 @@ export default class Tracker extends Component {
               </Row>
             </Form>
           </Drawer>
-          <TransactionList />
+          </div>
+
+          <div className="right_container">
+            <TransactionList />
+          </div>
+          
+          
           
           
         </div>
