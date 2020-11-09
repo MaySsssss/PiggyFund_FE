@@ -1,6 +1,11 @@
 import React, { createContext, useReducer, useState, useEffect } from 'react';
 import AppReducer from './AppReducer_budget';
-import moment from 'moment';
+import moment, { months } from 'moment';
+import { Header } from '../components/Budget/Header';
+
+function onOk(value) {
+    console.log('onOk: ', value);
+}
 
 var ITME_API = `https://be-4920.herokuapp.com/getallbudget`
 
@@ -30,13 +35,26 @@ export const GlobalProvider = ({ children }) => {
     });
 
   // Actions
-    setMonthToDisplay = (month) => {
+    const setMonthToDisplay = function(month) {
         state.month = month;
     };
 
     return (<GlobalContext.Provider value={{
         budgets: state.budgets.filter(budget => { return budget.Month.localeCompare(state.month) == 0; })
     }}>
-    {children}
+        <Header />
+        <select
+            onChange={e => setMonthToDisplay(e.target.value)}
+            onOk={onOk}
+        >
+            {months().map(month => {
+                if (moment().format('MMMM').localeCompare(month) == 0) {
+                    return (<option value={month} selected>{month}</option>)
+                } else {
+                    return (<option value={month}>{month}</option>)
+                }
+            })}
+        </select>
+        {children}
   </GlobalContext.Provider>);
 }

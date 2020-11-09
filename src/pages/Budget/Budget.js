@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Header } from '../../components/Budget/Header';
 import { Chart } from '../../components/Budget/Chart';
 import { BudgetList } from '../../components/Budget/BudgetList';
 import { GlobalProvider } from '../../context/GlobalState_budget';
@@ -60,19 +59,6 @@ export default class Budget extends Component {
         const { datas } = this.state;
         return (<>
             <GlobalProvider>
-                <Header />
-                <select
-                    onChange={e => GlobalProvider.setMonthToDisplay(e.target.value)}
-                    onOk={onOk}
-                >
-                    {months().map(month => {
-                        if (moment().format('MMMM').localeCompare(month) == 0) {
-                            return (<option value={month} selected>{month}</option>)
-                        } else {
-                            return (<option value={month}>{month}</option>)
-                        }
-                    })}
-                </select>
                 <div className="container">
                     <Chart />
                     <BudgetList />
