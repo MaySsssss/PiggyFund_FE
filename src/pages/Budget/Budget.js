@@ -19,7 +19,7 @@ export default class Budget extends Component {
         datas: {
             amount: "",
             category: "",
-            month: ""
+            month: moment().format('MMMM')
         }
     };
 

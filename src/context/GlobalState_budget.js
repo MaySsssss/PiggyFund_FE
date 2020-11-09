@@ -2,7 +2,6 @@ import React, { createContext, useReducer, useState, useEffect } from 'react';
 import AppReducer from './AppReducer_budget';
 import moment, { months } from 'moment';
 import { Header } from '../components/Budget/Header';
-import '../components/Budget/Progress.css'
 
 function onOk(value) {
     console.log('onOk: ', value);
@@ -21,7 +20,7 @@ export const GlobalContext_budget = createContext(initialState);
 
 // Provider component
 export const GlobalProvider_budget = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [state, dispatch] = useReducer(AppReducer, initialState);
     const [list, setList] = useState([]);
 
     useEffect(() => {
@@ -30,7 +29,7 @@ export const GlobalProvider_budget = ({ children }) => {
             const response = await fetch(url)
             const data = await response.json()
             setList(data)
-            state.budgets = list
+            state.budgets = list.filter(budget => { return budget.Month.localeCompare(state.month) == 0; })
         }
         fetchData()
     });
@@ -41,7 +40,7 @@ export const GlobalProvider_budget = ({ children }) => {
     };
 
     return (<GlobalContext_budget.Provider value={{
-        budgets: state.budgets.filter(budget => { return budget.Month.localeCompare(state.month) == 0; })
+        budgets: state.budgets
     }}>
         <Header />
         <select
