@@ -16,23 +16,29 @@ export const BudgetList = () => {
             results[results.length - 1].Progress = 0;
         });
 
-        var x = transactions.length;
         transactions.forEach(function (t) {
-            x += 10;
+            results.forEach(function (b) {
+                if (b.Category.localeCompare(t.Category)) {
+                    b.Progress += t.Amount;
+                }
+            });
         });
 
-            results.forEach(function (b) {
-                    b.Progress += x;
-            });
-
         results.forEach(function (b) {
-            b.Progress = (b.Progress / b.Amount).toFixed(2);
+            b.Progress /= b.Amount;
         });
 
         return budgets;
     };
 
     const budgetsWithProgress = calculateProgress(budgets, transactions);
+    function progress(budget) {
+        if (budget.Progress < 1) {
+            return (<div className="progress" style={{ width: 430 * budget.Progress }}></div>);
+        } else {
+            return (<div className="progress_exceeded"></div>);
+        }
+    };
 
     return (
         <>
@@ -42,9 +48,9 @@ export const BudgetList = () => {
                     return (
                         <>
                             <Budget key={budget._id} budget={budget} />
-                            {budget.Progress}
+                            {(100 * budget.Progress).toFixed(2) + '%'}
                             <div className="progressBar">
-                                <div className="progress" style={{ width: 430 * budget.Progress }}></div>
+                                {progress(budget)}
                             </div>
                         </>
                     )

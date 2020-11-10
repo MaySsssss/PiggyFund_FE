@@ -6,10 +6,11 @@
 
 .progress {
     height: 10px;
-    background-color: green;
+    background-color: #2ecc71;
 }
 
 .progress_exceeded {
+    width: 430px;
     height: 10px;
-    background-color: red;
+    background-color: #c0392b;
 }
