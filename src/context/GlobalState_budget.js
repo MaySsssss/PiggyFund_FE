@@ -2,6 +2,7 @@ import React, { createContext, useReducer, useState, useEffect } from 'react';
 import AppReducer from './AppReducer_budget';
 import moment, { months } from 'moment';
 import { Header } from '../components/Budget/Header';
+import cookie from 'react-cookies'
 
 function onOk(value) {
     console.log('onOk: ', value);
@@ -17,6 +18,10 @@ const initialState = {
 
 // Create context
 export const GlobalContext_budget = createContext(initialState);
+
+export const loginUser = () => {
+    return cookie.load('userInfo')
+}
 
 // Provider component
 export const GlobalProvider_budget = ({ children }) => {
@@ -34,13 +39,27 @@ export const GlobalProvider_budget = ({ children }) => {
         fetchData()
     });
 
+    function getRemoval(arr1) {
+        let arr = [...arr1];
+        let newarr = [];
+        let userid = loginUser();
+        // console.log("window", parseInt(userid))
+        for (const value of arr) {
+            if (value.UserID === parseInt(userid)) {
+              newarr.push(value);
+            }
+        }
+        return newarr;
+    }
+
   // Actions
     const setMonthToDisplay = function(month) {
         state.month = month;
     };
 
     return (<GlobalContext_budget.Provider value={{
-        budgets: state.budgets
+        budgets: getRemoval(state.budgets)
+        // budgets: state.budgets
     }}>
         <Header />
         <select
