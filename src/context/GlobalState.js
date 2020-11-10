@@ -1,12 +1,14 @@
 import React, { createContext, useReducer, useState, useEffect } from 'react';
 import AppReducer from './AppReducer';
+import moment, { months } from 'moment';
 import cookie from 'react-cookies'
 
 const ITME_API = `https://be-4920.herokuapp.com/getall`
 
 // Initial state
 const initialState = {
-  transactions: []
+  transactions: [],
+  month: moment().format('MMMM')
 }
 
 // Create context
@@ -27,8 +29,10 @@ export const GlobalProvider = ({ children }) => {
       const response = await fetch(url)
       const data = await response.json()
       setList(data)
-      state.transactions = list
+      // state.transactions = list
+      state.transactions = list.filter(transaction => { return moment(transaction.Time).format('MMMM').localeCompare(state.month) == 0; })
       // console.log(state.transactions)
+      // console.log(state.transactions.Time)
     }
     fetchData()
   })
@@ -61,12 +65,27 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  const setMonthToDisplay = function(month) {
+    state.month = month;
+  };
+
   return (<GlobalContext.Provider value={{
     transactions: getRemoval(state.transactions),
     // transactions: state.transactions,
     deleteTransaction,
     addTransaction
   }}>
+    <select
+      onChange={e => setMonthToDisplay(e.target.value)}
+    >
+      {months().map(month => {
+          if (moment().format('MMMM').localeCompare(month) === 0) {
+              return (<option value={month} selected>{month}</option>)
+          } else {
+              return (<option value={month}>{month}</option>)
+          }
+      })}
+    </select>
     {children}
   </GlobalContext.Provider>);
 }

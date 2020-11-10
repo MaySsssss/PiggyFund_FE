@@ -89,11 +89,11 @@ export default function Login() {
   const history = useHistory();
   
   const submitData = () => {
-    console.log(data)
-    console.log(validate())
+    // console.log(data)
+    // console.log(validate())
     let user = validate()
     if (user === 1 || user === 2) {
-      console.log('login success:', user)
+      // console.log('login success:', user)
       cookie.save('userInfo', user, { path: '/' })
       history.push(`/tracker`)
     }
