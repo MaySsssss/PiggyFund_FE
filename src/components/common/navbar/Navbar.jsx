@@ -36,8 +36,10 @@ function Navbar () {
   };
 
   const logout = () => {
+    console.log("cookie clear and logout")
     cookie.remove('userInfo', { path: '/' })
-    window.location.href = '/Login'
+    cookie.remove('trackerData', { path: '/' })
+    window.location.href = '/'
   }
   
 
@@ -97,8 +99,8 @@ function Navbar () {
         <PersonIcon style={{ color: '#404040', fontSize: 24 }}/>
       </a>
 
-      <a href="/" className="navbar-item" onChange={logout}>
-        <ExitToAppIcon style={{ color: '#404040', fontSize: 24 }}/>
+      <a href="/" className="navbar-item">
+        <ExitToAppIcon style={{ color: '#404040', fontSize: 24 }} onClick={logout} />
       </a>
 
     </section>

@@ -8,6 +8,7 @@ const ITME_API = `https://be-4920.herokuapp.com/getall`
 // Initial state
 const initialState = {
   transactions: [],
+  all_transactions: [],
   month: moment().format('MMMM')
 }
 
@@ -17,6 +18,7 @@ export const GlobalContext = createContext(initialState);
 export const loginUser = () => {
   return cookie.load('userInfo')
 }
+
 
 // Provider component
 export const GlobalProvider = ({ children }) => {
@@ -29,7 +31,7 @@ export const GlobalProvider = ({ children }) => {
       const response = await fetch(url)
       const data = await response.json()
       setList(data)
-      // state.transactions = list
+      state.all_transactions = list
       state.transactions = list.filter(transaction => { return moment(transaction.Time).format('MMMM').localeCompare(state.month) == 0; })
       // console.log(state.transactions)
       // console.log(state.transactions.Time)
@@ -47,6 +49,19 @@ export const GlobalProvider = ({ children }) => {
           newarr.push(value);
         }
     }
+    return newarr;
+  }
+
+  function getRemovalAll(arr1) {
+    let arr = [...arr1];
+    let newarr = [];
+    let userid = loginUser();
+    for (const value of arr) {
+        if (value.UserID === parseInt(userid)) {
+          newarr.push(value);
+        }
+    }
+    cookie.save('trackerData', newarr, { path: '/' })
     return newarr;
   }
 
@@ -71,6 +86,7 @@ export const GlobalProvider = ({ children }) => {
 
   return (<GlobalContext.Provider value={{
     transactions: getRemoval(state.transactions),
+    all_transactions: getRemovalAll(state.all_transactions),
     // transactions: state.transactions,
     deleteTransaction,
     addTransaction
