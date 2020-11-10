@@ -13,6 +13,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 
+import cookie from 'react-cookies'
+
 import { GlobalContext } from '../../../context/GlobalState';
 
 import './Navbar.css'
@@ -32,6 +34,11 @@ function Navbar () {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const logout = () => {
+    cookie.remove('userInfo', { path: '/' })
+    window.location.href = '/Login'
+  }
   
 
   return (
@@ -90,7 +97,7 @@ function Navbar () {
         <PersonIcon style={{ color: '#404040', fontSize: 24 }}/>
       </a>
 
-      <a href="/" className="navbar-item">
+      <a href="/" className="navbar-item" onChange={logout}>
         <ExitToAppIcon style={{ color: '#404040', fontSize: 24 }}/>
       </a>
 

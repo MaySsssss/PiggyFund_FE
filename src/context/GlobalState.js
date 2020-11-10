@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useState, useEffect } from 'react';
 import AppReducer from './AppReducer';
+import cookie from 'react-cookies'
 
 const ITME_API = `https://be-4920.herokuapp.com/getall`
 
@@ -10,6 +11,10 @@ const initialState = {
 
 // Create context
 export const GlobalContext = createContext(initialState);
+
+export const loginUser = () => {
+  return cookie.load('userInfo')
+}
 
 // Provider component
 export const GlobalProvider = ({ children }) => {
@@ -28,6 +33,19 @@ export const GlobalProvider = ({ children }) => {
     fetchData()
   })
 
+  function getRemoval(arr1) {
+    let arr = [...arr1];
+    let newarr = [];
+    let userid = loginUser();
+    // console.log("window", parseInt(userid))
+    for (const value of arr) {
+        if (value.UserID === parseInt(userid)) {
+          newarr.push(value);
+        }
+    }
+    return newarr;
+  }
+
   // Actions
   function deleteTransaction(id) {
     dispatch({
@@ -44,7 +62,8 @@ export const GlobalProvider = ({ children }) => {
   }
 
   return (<GlobalContext.Provider value={{
-    transactions: state.transactions,
+    transactions: getRemoval(state.transactions),
+    // transactions: state.transactions,
     deleteTransaction,
     addTransaction
   }}>

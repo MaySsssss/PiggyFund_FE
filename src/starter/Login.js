@@ -11,6 +11,8 @@ import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import cookie from 'react-cookies'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -57,34 +59,43 @@ export default function Login() {
   }
 
   const validate = () => {
+    
     let email = data.email;
     let password = data.password;
-    
+
     let errors = {};
-    let isValid = true;
 
-    if (email !== "admin@gmail.com") {
-      isValid = false;
-      errors["email"] = "Please use 'admin@gmail.com' as test";
-    }
+    let ids = 0;
 
-    if (password !== "admin") {
-      isValid = false;
-      errors["password"] = "Please use 'admin' as test";
+    if (email === "may@gmail.com" || email === "ken@gmail.com") {
+      if (password === "test") {
+        if (email === "may@gmail.com") {
+          ids = 1;
+        } else {
+          ids = 2;
+        }
+      } else {
+        errors["password"] = "Please enter your correct password";
+      }
+    } else {
+      errors["email"] = "Please enter your correct email";
     }
 
     setData({ ...data, errors: errors });
 
-    return isValid;
+    return ids;
   }
 
   const history = useHistory();
   
   const submitData = () => {
     console.log(data)
-    if (validate()) {
-      console.log('login success')
-      history.push('/tracker')
+    console.log(validate())
+    let user = validate()
+    if (user === 1 || user === 2) {
+      console.log('login success:', user)
+      cookie.save('userInfo', user, { path: '/' })
+      history.push(`/tracker`)
     }
   }
 
