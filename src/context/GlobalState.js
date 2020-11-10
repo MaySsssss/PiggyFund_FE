@@ -32,7 +32,7 @@ export const GlobalProvider = ({ children }) => {
       const data = await response.json()
       setList(data)
       state.all_transactions = list
-      state.transactions = list.filter(transaction => { return moment(transaction.Time).format('MMMM').localeCompare(state.month) == 0; })
+      state.transactions = list.filter(transaction => { return moment(transaction.Time).format('MMMM').localeCompare(state.month) === 0; })
       // console.log(state.transactions)
       // console.log(state.transactions.Time)
     }

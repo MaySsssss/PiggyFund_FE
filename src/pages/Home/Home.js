@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import './Home.css'
 import 'antd/dist/antd.css'; 
 
-import { Card, Avatar, Row, Col } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-
-const { Meta } = Card;
-
-
 export default class Home extends Component {
   render() {
     return (

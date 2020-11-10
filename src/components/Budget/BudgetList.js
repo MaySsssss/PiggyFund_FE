@@ -28,11 +28,7 @@ export const BudgetList = () => {
             results.forEach(function (b) {
                 if (b.Category.localeCompare(t.Category) === 0 && b.Month === moment(t.Time).format('MMMM')) {
                     var cost = parseFloat(t.Amount).toFixed(2)
-                    if (cost < 0) {
-                        b.Spent -= cost;
-                    } else {
-                        b.Spent += cost;
-                    }
+                    b.Spent -= cost;
                 }
             });
         });
@@ -46,19 +42,19 @@ export const BudgetList = () => {
     };
 
     const budgetsWithProgress = calculateProgress(budgets, transactions);
-    function progress(budget) {
-        if (budget.Progress < 1) {
-            return (<div className="progress" style={{ width: 430 * budget.Progress }}></div>);
-        } else {
-            return (<div className="progress_exceeded"></div>);
-        }
-    };
+    // function progress(budget) {
+    //     if (budget.Progress < 1) {
+    //         return (<div className="progress" style={{ width: 430 * budget.Progress }}></div>);
+    //     } else {
+    //         return (<div className="progress_exceeded"></div>);
+    //     }
+    // };
 
     return (
         <>
             <h3>Month</h3>
             <ul className="list">
-                {budgets.map(budget => {
+                {budgetsWithProgress.map(budget => {
                     return (
                         <Budget key={budget._id} budget={budget} />
                     )

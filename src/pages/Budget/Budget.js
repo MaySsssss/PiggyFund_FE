@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import { Chart } from '../../components/Budget/Chart';
 import { BudgetList } from '../../components/Budget/BudgetList';
@@ -98,7 +99,7 @@ export default class Budget extends Component {
                                             onOk={onOk}
                                         >
                                             {months().map(month => {
-                                                if (month.localeCompare(datas.month) == 0 || (!(datas.month) && moment().format('MMMM').localeCompare(month) == 0)) {
+                                                if (month.localeCompare(datas.month) === 0 || (!(datas.month) && moment().format('MMMM').localeCompare(month) === 0)) {
                                                     return (<option value={month} selected>{month}</option>)
                                                 } else {
                                                     return (<option value={month}>{month}</option>)

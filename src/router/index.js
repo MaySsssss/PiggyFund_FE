@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Switch, Route } from 'react-router-dom' 
-import Home from '../pages/Home/Home'
+import { Route } from 'react-router-dom' 
+// import Home from '../pages/Home/Home'
 import Tracker from '../pages/Tracker/Tracker'
 import Budget from '../pages/Budget/Budget'
 import Export from '../pages/Export/Export'

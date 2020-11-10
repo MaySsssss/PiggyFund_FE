@@ -25,7 +25,7 @@ export const loginUser = () => {
 
 // Provider component
 export const GlobalProvider_budget = ({ children }) => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [state] = useReducer(AppReducer, initialState);
     const [list, setList] = useState([]);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export const GlobalProvider_budget = ({ children }) => {
             const response = await fetch(url)
             const data = await response.json()
             setList(data)
-            state.budgets = list.filter(budget => { return budget.Month.localeCompare(state.month) == 0; })
+            state.budgets = list.filter(budget => { return budget.Month.localeCompare(state.month) === 0; })
         }
         fetchData()
     });
@@ -57,6 +57,7 @@ export const GlobalProvider_budget = ({ children }) => {
         state.month = month;
     };
 
+    // eslint-disable-next-line react/jsx-pascal-case
     return (<GlobalContext_budget.Provider value={{
         budgets: getRemoval(state.budgets)
         // budgets: state.budgets
@@ -67,7 +68,7 @@ export const GlobalProvider_budget = ({ children }) => {
             onOk={onOk}
         >
             {months().map(month => {
-                if (moment().format('MMMM').localeCompare(month) == 0) {
+                if (moment().format('MMMM').localeCompare(month) === 0) {
                     return (<option value={month} selected>{month}</option>)
                 } else {
                     return (<option value={month}>{month}</option>)

@@ -74,6 +74,7 @@ export const Chart = () => {
                 data={state}
                 width={100}
                 height={50}
+                // eslint-disable-next-line no-sequences
                 options={options, scale}
         />
     </h2>

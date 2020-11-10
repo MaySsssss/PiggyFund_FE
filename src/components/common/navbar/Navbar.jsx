@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import GetAppIcon from '@material-ui/icons/GetAppRounded';
 import PersonIcon from '@material-ui/icons/PersonRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
@@ -15,8 +15,6 @@ import { useTheme } from '@material-ui/core/styles';
 
 import cookie from 'react-cookies'
 
-import { GlobalContext } from '../../../context/GlobalState';
-
 import './Navbar.css'
 
 function Navbar () {
@@ -24,8 +22,6 @@ function Navbar () {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const { transactions } = useContext(GlobalContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -72,7 +68,7 @@ function Navbar () {
           </Button>
           <Button onClick={handleClose} color="primary">
             <CsvDownload 
-              data={transactions}
+              data={cookie.load('trackerData')}
               filename="tracker_history.csv"
               style={{ 
                 boxShadow:"inset 0px 1px 0px 0px #e184f3",

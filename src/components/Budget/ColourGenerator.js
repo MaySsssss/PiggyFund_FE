@@ -11,14 +11,14 @@ export var ColourGenerator = (function () {
             var c = '#';
             var hc = '#';
             for (var j = 0; j < 6; j++) {
-                if (j % 2 == 0) {
+                if (j % 2 === 0) {
                     var pos = Math.floor(Math.random() * 7);
                     c += letters[pos + 7];
                     hc += letters[pos];
                 } else {
-                    var pos = Math.floor(Math.random() * 16);
-                    c += letters[pos];
-                    hc += letters[pos];
+                    var pos2 = Math.floor(Math.random() * 16);
+                    c += letters[pos2];
+                    hc += letters[pos2];
                 }
             }
 
@@ -43,7 +43,7 @@ export var ColourGenerator = (function () {
 
     return {
         getInstance: function (amount) {
-            if (n != amount || !instance) {
+            if (n !== amount || !instance) {
                 n = amount;
                 instance = createInstance(amount);
             }
