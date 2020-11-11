@@ -44,7 +44,8 @@ function Navbar () {
     <section className="navbar">
       {/* <a href="/" className="navbar-item">Home</a> */}
       {/*<a href="/" className="navbar-item">Tracker</a>*/}
-      
+
+      <a href="/tracker" className="navbar-item">Tracker</a>
       <a href="/budget" className="navbar-item">Budget</a>
       
       <div className="navbar-item" onClick={handleClickOpen}>

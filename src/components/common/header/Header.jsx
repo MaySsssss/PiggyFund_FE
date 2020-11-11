@@ -8,9 +8,7 @@ function Header () {
   return (
     <section className="header">
       <section className="header-top">
-        <section className="header-top__logo">
-          <a href="/tracker" className="header-logo">LOGO</a>
-        </section>
+      
         <section className="header-top__navbar">
           <section className="header-top__navigation">
             <Navbar />
