@@ -7,6 +7,8 @@ import Export from '../pages/Export/Export'
 import Account from '../pages/Account/Account'
 import AddItem from '../pages/AddItems/AddItem'
 
+import 'antd/dist/antd.css'; 
+
 function index() {
   return (
     <div>
