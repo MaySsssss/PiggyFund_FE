@@ -85,6 +85,7 @@ export const GlobalProvider = ({ children }) => {
   const setMonthToDisplay = function(month) {
     state.month = month;
   };
+  
 
   return (<GlobalContext.Provider value={{
     transactions: getRemoval(state.transactions),
@@ -94,19 +95,19 @@ export const GlobalProvider = ({ children }) => {
     addTransaction
   }}>
     <Header />
-    <div className="month_display">
-      <select
-        onChange={e => setMonthToDisplay(e.target.value)}
-      >
-        {months().map(month => {
-            if (moment().format('MMMM').localeCompare(month) === 0) {
-                return (<option value={month} selected>{month}</option>)
-            } else {
-                return (<option value={month}>{month}</option>)
-            }
-        })}
-      </select>
-    </div>
+  
+    <select
+      onChange={e => setMonthToDisplay(e.target.value)}
+    >
+      {months().map(month => {
+          if (moment().format('MMMM').localeCompare(month) === 0) {
+              return (<option value={month} selected>{month}</option>)
+          } else {
+              return (<option value={month}>{month}</option>)
+          }
+      })}
+    </select>
+
     
     {children}
   </GlobalContext.Provider>);
