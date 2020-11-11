@@ -23,16 +23,17 @@ export const loginUser = () => {
 // Provider component
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
-  const [list, setList] = useState([])
+    const [list, setList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = `${ITME_API}`
-      const response = await fetch(url)
-      const data = await response.json()
-      setList(data)
-      state.all_transactions = list
-      state.transactions = list.filter(transaction => { return moment(transaction.Time).format('MMMM').localeCompare(state.month) === 0; })
+        const url = `${ITME_API}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setList(data);
+        state.all_transactions = list;
+        state.transactions = list.filter(transaction => { return moment(transaction.Time).format('MMMM').localeCompare(state.month) === 0; })
+            .sort(function (a, b) { return moment(a.Time).diff(moment(b.Time)); });
       // console.log(state.transactions)
       // console.log(state.transactions.Time)
     }

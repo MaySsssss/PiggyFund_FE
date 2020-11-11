@@ -54,14 +54,30 @@ export default class Budget extends Component {
     addBudget = _ => {
         const { datas } = this.state;
         let userid = loginUser();
-        fetch(`https://be-4920.herokuapp.com/updateBudget?category=${datas.category}&amount=${datas.amount}&month=${datas.month}&userid=${userid}`)
-            .then(console.log('Add budget success'))
-            .catch(error =>
-                this.setState({
-                    isLoaded: true,
-                    error: error
-                })
-            )
+        if (datas.category.length == 0) {
+            notification['error']({
+                message: 'Add',
+                description:
+                    'Please enter the category name.',
+            });
+        } else if (datas.amount.length == 0 || parseInt(datas.amount) <= 0) {
+            notification['error']({
+                message: 'Add',
+                description:
+                    'Please enter a valid number for amount (>0).',
+            });
+        } else {
+            fetch(`https://be-4920.herokuapp.com/updateBudget?category=${datas.category}&amount=${datas.amount}&month=${datas.month}&userid=${userid}`)
+                .then(console.log('Add budget success'))
+                .catch(error =>
+                    this.setState({
+                        isLoaded: true,
+                        error: error
+                    })
+            );
+            this.openNotificationWithIcon('success');
+            this.onClose();
+        }
     };
 
     render() {
@@ -90,7 +106,7 @@ export default class Budget extends Component {
                                 }}
                             >
                                 <button className='additem-btn' type="primary" onClick={this.onClose} style={{ marginRight: 8 }}>Cancel</button>
-                                <button className='additem-btn' onClick={() => { this.addBudget(); this.openNotificationWithIcon('success'); this.onClose(); }} type="primary">Add Budget</button>
+                                <button className='additem-btn' onClick={() => { this.addBudget(); }} type="primary">Add Budget</button>
                             </div>
                         }
                     >

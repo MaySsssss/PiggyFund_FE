@@ -76,15 +76,31 @@ export default class Tracker extends Component {
 
   addItems = _ => {
     const { datas, date } = this.state;
-    let userid = loginUser();
-    fetch(`https://be-4920.herokuapp.com/spending?category=${datas.category}&amount=${datas.amount}&time=${date}&userid=${userid}`)
-      .then(console.log('Add item success'))
-      .catch(error => 
-        this.setState({
-          isLoaded: true,
-          error: error
-        })
-      )
+      let userid = loginUser();
+      if (datas.category.length == 0) {
+          notification['error']({
+              message: 'Add',
+              description:
+                  'Please enter the category name.',
+          });
+      } else if (datas.amount.length == 0 || parseInt(datas.amount) == 0) {
+          notification['error']({
+              message: 'Add',
+              description:
+                  'Please enter a valid number for amount (non-zero).',
+          });
+      } else {
+          fetch(`https://be-4920.herokuapp.com/spending?category=${datas.category}&amount=${datas.amount}&time=${date}&userid=${userid}`)
+              .then(console.log('Add item success'))
+              .catch(error =>
+                  this.setState({
+                      isLoaded: true,
+                      error: error
+                  })
+          );
+          this.openNotificationWithIcon('success');
+          this.onClose();
+      }
   }
 
   onChange = (value) => {
@@ -117,7 +133,7 @@ export default class Tracker extends Component {
                 }}
               >
                 <button className='additem-btn' type="primary" onClick={this.onClose} style={{ marginRight: 8 }}>Cancel</button>
-                <button className='additem-btn' onClick={() => {this.addItems(); this.openNotificationWithIcon('success'); this.onClose();}} type="primary">Add Item</button>
+                <button className='additem-btn' onClick={() => {this.addItems();}} type="primary">Add Item</button>
               </div>
             }
           >
