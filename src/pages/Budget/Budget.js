@@ -8,8 +8,15 @@ import moment, { months } from 'moment';
 import '../Tracker/Tracker.css'
 import { notification, Drawer, Form, Col, Row } from 'antd';
 
+import cookie from 'react-cookies'
+
 function onOk(value) {
     console.log('onOk: ', value);
+}
+
+export const loginUser = () => {
+    let id = parseInt(cookie.load('userInfo'))
+    return id
 }
 
 export default class Budget extends Component {
@@ -46,7 +53,8 @@ export default class Budget extends Component {
 
     addBudget = _ => {
         const { datas } = this.state;
-        fetch(`https://be-4920.herokuapp.com/updateBudget?category=${datas.category}&amount=${datas.amount}&month=${datas.month}`)
+        let userid = loginUser();
+        fetch(`https://be-4920.herokuapp.com/updateBudget?category=${datas.category}&amount=${datas.amount}&month=${datas.month}&userid=${userid}`)
             .then(console.log('Add budget success'))
             .catch(error =>
                 this.setState({
