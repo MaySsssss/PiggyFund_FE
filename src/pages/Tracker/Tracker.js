@@ -4,15 +4,20 @@ import { Balance } from '../../components/Transaction/Balance';
 import { Chart } from '../../components/Transaction/Chart';
 import { IncomeExpenses } from '../../components/Transaction/IncomeExpenses';
 import { TransactionList } from '../../components/Transaction/TransactionList';
-
 import { GlobalProvider } from '../../context/GlobalState';
 
-import './Tracker.css'
+import cookie from 'react-cookies'
 
+import './Tracker.css'
 import { notification, Drawer, Form, Col, Row, DatePicker } from 'antd';
 
 function onOk(value) {
   console.log('onOk: ', value);
+}
+
+export const loginUser = () => {
+  let id = parseInt(cookie.load('userInfo'))
+  return id
 }
 
 export default class Tracker extends Component {
@@ -24,8 +29,13 @@ export default class Tracker extends Component {
       amount: "",
       category: ""
     },
-    date: ""
+    date: "", 
+    categories: []
   };
+
+  componentDidMount() {
+    this.getCategory()
+  }
 
   showDrawer = () => {
     this.setState({
@@ -47,9 +57,27 @@ export default class Tracker extends Component {
     });
   };
 
+  // http://ballistic-circular-parent.glitch.me/getallcategory
+  getCategory = _ => {
+    // const { categories } = this.state;
+    fetch(`http://ballistic-circular-parent.glitch.me/getallcategory`)
+      .then(response => console.log('Get Categoris: ', response[1]))
+      // .then(response => (
+      //   this.setState({ 
+      //     categories: response[0] 
+      //   })))
+      .catch(error => 
+        this.setState({
+          isLoaded: true,
+          error: error
+        })
+      )
+  }
+
   addItems = _ => {
     const { datas, date } = this.state;
-    fetch(`https://be-4920.herokuapp.com/spending?category=${datas.category}&amount=${datas.amount}&fbclid=IwAR3ruVBFMXI2d-mgnolt0OCgP3UPI2i2ogs_HNDtVGEjgWbzN8XDpzsKK6w&time=${date}`)
+    let userid = loginUser();
+    fetch(`https://be-4920.herokuapp.com/spending?category=${datas.category}&amount=${datas.amount}&time=${date}&userid=${userid}`)
       .then(console.log('Add item success'))
       .catch(error => 
         this.setState({
@@ -66,7 +94,7 @@ export default class Tracker extends Component {
   }
 
   render() {
-    const { datas } = this.state;
+    const { datas, categories } = this.state;
     return (
       <GlobalProvider>
         <Header />
@@ -108,6 +136,16 @@ export default class Tracker extends Component {
                       onOk={onOk} 
                     />
                   </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={24}>
+                  <p>Exist Category</p>
+                  {/* {categories.map(item => (
+                    <li key={item._id}>
+                      ID: {item.key}
+                    </li>
+                  ))} */}
                 </Col>
               </Row>
               <Row gutter={16}>
