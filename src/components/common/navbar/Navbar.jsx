@@ -90,7 +90,7 @@ function Navbar () {
           </Button>
           <Button onClick={handleClose} color="primary">
             <CsvDownload 
-              data={cookie.load('trackerData')}
+              data={JSON.parse(localStorage.trackerData)}
               filename="tracker_history.csv"
               style={{ 
                 boxShadow:"inset 0px 1px 0px 0px #e184f3",
