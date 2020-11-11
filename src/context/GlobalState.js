@@ -41,16 +41,26 @@ export const GlobalProvider = ({ children }) => {
     fetchData()
   })
 
+  const convertToCurrency = cookie.load('currency');
+  const storage = window.localStorage;
+  const rates = JSON.parse(storage.rates);
+
   function getRemoval(arr1) {
     let arr = [...arr1];
     let newarr = [];
     let userid = loginUser();
-    // console.log("window", parseInt(userid))
+
     for (const value of arr) {
         if (value.UserID === parseInt(userid)) {
+          let baseAmount = parseFloat(value.Amount).toFixed(2)
+          let res = parseFloat(baseAmount * rates[convertToCurrency]).toFixed(2);
+          value.newAmount = res.toString()
           newarr.push(value);
         }
     }
+
+    let storage = window.localStorage;
+    storage.trackerData = JSON.stringify(newarr);
     return newarr;
   }
 
@@ -63,7 +73,9 @@ export const GlobalProvider = ({ children }) => {
           newarr.push(value);
         }
     }
-    cookie.save('trackerData', newarr, { path: '/' })
+    // let storage = window.localStorage;
+    // storage.trackerData = JSON.stringify(newarr);
+
     return newarr;
   }
 
