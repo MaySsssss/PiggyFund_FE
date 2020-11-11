@@ -2,6 +2,7 @@ import React, { createContext, useReducer, useState, useEffect } from 'react';
 import AppReducer from './AppReducer';
 import moment, { months } from 'moment';
 import cookie from 'react-cookies'
+import { Header } from '../components/Transaction/Header';
 
 const ITME_API = `https://be-4920.herokuapp.com/getall`
 
@@ -92,17 +93,21 @@ export const GlobalProvider = ({ children }) => {
     deleteTransaction,
     addTransaction
   }}>
-    <select
-      onChange={e => setMonthToDisplay(e.target.value)}
-    >
-      {months().map(month => {
-          if (moment().format('MMMM').localeCompare(month) === 0) {
-              return (<option value={month} selected>{month}</option>)
-          } else {
-              return (<option value={month}>{month}</option>)
-          }
-      })}
-    </select>
+    <Header />
+    <div className="month_display">
+      <select
+        onChange={e => setMonthToDisplay(e.target.value)}
+      >
+        {months().map(month => {
+            if (moment().format('MMMM').localeCompare(month) === 0) {
+                return (<option value={month} selected>{month}</option>)
+            } else {
+                return (<option value={month}>{month}</option>)
+            }
+        })}
+      </select>
+    </div>
+    
     {children}
   </GlobalContext.Provider>);
 }

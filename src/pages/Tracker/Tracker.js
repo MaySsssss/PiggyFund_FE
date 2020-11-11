@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from '../../components/Transaction/Header';
+
 import { Balance } from '../../components/Transaction/Balance';
 import { Chart } from '../../components/Transaction/Chart';
 import { IncomeExpenses } from '../../components/Transaction/IncomeExpenses';
@@ -113,8 +113,9 @@ export default class Tracker extends Component {
     const { datas, categories } = this.state;
     return (
       <GlobalProvider>
-        <Header />
+
         <div className="container">
+          
           <div className="left_container">
           <Balance />
           <Chart />
