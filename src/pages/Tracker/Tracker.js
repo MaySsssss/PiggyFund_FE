@@ -9,7 +9,7 @@ import { GlobalProvider } from '../../context/GlobalState';
 import cookie from 'react-cookies'
 
 import './Tracker.css'
-import { notification, Drawer, Form, Col, Row, DatePicker } from 'antd';
+import { notification, Drawer, Form, Col, Row, DatePicker, AutoComplete, Input } from 'antd';
 
 function onOk(value) {
   console.log('onOk: ', value);
@@ -25,9 +25,9 @@ export default class Tracker extends Component {
     visible: false,
     error: null,
     isLoaded: false,
+    inputcategory: "",
     datas: {
-      amount: "",
-      category: ""
+      amount: ""
     },
     date: "", 
     categories: []
@@ -57,40 +57,35 @@ export default class Tracker extends Component {
     });
   };
 
-  // http://ballistic-circular-parent.glitch.me/getallcategory
-  getCategory = _ => {
-    // const { categories } = this.state;
-    fetch(`http://ballistic-circular-parent.glitch.me/getallcategory`)
-      .then(response => console.log('Get Categoris: ', response[1]))
-      // .then(response => (
-      //   this.setState({ 
-      //     categories: response[0] 
-      //   })))
-      .catch(error => 
-        this.setState({
-          isLoaded: true,
-          error: error
-        })
-      )
-  }
+  getCategory = async() => {
+    try {
+      let res = await fetch(`http://ballistic-circular-parent.glitch.me/getallcategory`);
+      let posts = await res.json();
+      this.setState({
+        categories: posts
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }  
 
   addItems = _ => {
-    const { datas, date } = this.state;
+    const { datas, date, inputcategory } = this.state;
       let userid = loginUser();
-      if (datas.category.length == 0) {
+      if (inputcategory.length === 0) {
           notification['error']({
               message: 'Add',
               description:
                   'Please enter the category name.',
           });
-      } else if (datas.amount.length == 0 || parseInt(datas.amount) == 0) {
+      } else if (datas.amount.length === 0 || parseInt(datas.amount) === 0) {
           notification['error']({
               message: 'Add',
               description:
                   'Please enter a valid number for amount (non-zero).',
           });
       } else {
-          fetch(`https://be-4920.herokuapp.com/spending?category=${datas.category}&amount=${datas.amount}&time=${date}&userid=${userid}`)
+          fetch(`https://be-4920.herokuapp.com/spending?category=${inputcategory}&amount=${datas.amount}&time=${date}&userid=${userid}`)
               .then(console.log('Add item success'))
               .catch(error =>
                   this.setState({
@@ -109,13 +104,25 @@ export default class Tracker extends Component {
     })
   }
 
+  onSelect_inputauto = (data) => {
+    this.setState({
+      inputcategory: data
+    })
+    // console.log('onSelect', data);
+  };
+  onChange_inputauto = (data) => {
+    this.setState({
+      inputcategory: data
+    })
+    // console.log('onSelect', data);
+  };
+
   render() {
     const { datas, categories } = this.state;
     return (
       <GlobalProvider>
 
         <div className="container">
-          
           <div className="left_container">
           <Balance />
           <Chart />
@@ -157,26 +164,21 @@ export default class Tracker extends Component {
               </Row>
               <Row gutter={16}>
                 <Col span={24}>
-                  <p>Exist Category</p>
-                  {/* {categories.map(item => (
-                    <li key={item._id}>
-                      ID: {item.key}
-                    </li>
-                  ))} */}
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col span={24}>
                   <Form.Item
                     name="category"
                     label="Category"
                     rules={[{ required: true, message: 'Please enter the category' }]}
                   >
-                    <input 
-                      type="text"
-                      placeholder="Enter catagory..." 
-                      value={datas.category} 
-                      onChange={e => this.setState({ datas: { ...datas, category: e.target.value}})}
+                    <AutoComplete
+                        dataSource={categories}
+                        onChange={this.onChange_inputauto}
+                        onSearch={this.onSelect_inputauto}
+                        children={
+                          <Input 
+                            placeholder="Enter catagory..." 
+                            type="text"
+                          />
+                        }
                     />
                   </Form.Item>
                 </Col>
