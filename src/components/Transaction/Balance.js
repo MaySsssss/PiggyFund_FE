@@ -4,7 +4,7 @@ import { GlobalContext } from '../../context/GlobalState';
 export const Balance = () => {
   const { transactions } = useContext(GlobalContext);
 
-  const amounts = transactions.map(transaction => transaction.Amount);
+  const amounts = transactions.map(transaction => transaction.newAmount);
 
   const total = amounts
     .filter(item => !isNaN(item))

@@ -58,6 +58,9 @@ export const GlobalProvider = ({ children }) => {
           newarr.push(value);
         }
     }
+
+    let storage = window.localStorage;
+    storage.trackerData = JSON.stringify(newarr);
     return newarr;
   }
 
@@ -70,8 +73,8 @@ export const GlobalProvider = ({ children }) => {
           newarr.push(value);
         }
     }
-    let storage = window.localStorage;
-    storage.trackerData = JSON.stringify(newarr);
+    // let storage = window.localStorage;
+    // storage.trackerData = JSON.stringify(newarr);
 
     return newarr;
   }
