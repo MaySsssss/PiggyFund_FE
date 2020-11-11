@@ -100,7 +100,7 @@ export default function Register() {
     console.log(data)
     if (validate()) {
       console.log('register success')
-      history.push('/login')
+      history.push('/tracker')
     }
   }
 
@@ -198,7 +198,7 @@ export default function Register() {
             <Grid container justify="flex-end">
               <Grid item>
                 <Link href="/" variant="body2">
-                  Already have an account? Sign in
+                  {"Already have an account? Sign in"}
                 </Link>
               </Grid>
             </Grid>
