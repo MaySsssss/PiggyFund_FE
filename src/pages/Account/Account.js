@@ -94,7 +94,7 @@ export default class Account extends Component {
                   'Please enter a valid date (after today).',
           });
       } else {
-          fetch(`https://be-4920.herokuapp.com/getall`)
+          fetch(`https://be-4920.herokuapp.com/addreminder?message=${datas.message}&time=${datas.date}&userid=${userid}`)
               .then(console.log('Add item success'))
               .catch(error =>
                   this.setState({
@@ -108,7 +108,7 @@ export default class Account extends Component {
   }
 
   render() {
-    const { currencies } = this.state;
+    const { currencies, datas } = this.state;
 
     const currencyChoice = currencies.map(currency =>
       <option key={currency} value={currency}> {currency} </option>      
@@ -166,7 +166,7 @@ export default class Account extends Component {
                                     type="text"
                                     placeholder="Enter message..."
                                     value={this.state.datas.message}
-                                    onChange={e => { this.state.datas.message = e; }}
+                                    onChange={e => this.setState({ datas: { ...datas, message: e.target.value } })}
                                 />
                             </Form.Item>
                         </Col>

@@ -15,8 +15,9 @@ import { useTheme } from '@material-ui/core/styles';
 
 import cookie from 'react-cookies';
 
-import { Notification } from './Notification';
+import { NotificationList } from './NotificationList';
 import './Navbar.css';
+import { GlobalProvider_notification } from '../../../context/GlobalState_notification';
 
 function Navbar () {
 
@@ -99,7 +100,9 @@ function Navbar () {
           <a href="/account" className="navbar-item">
               <PersonIcon style={{ color: '#404040', fontSize: 24 }}/>
           </a>
-          <Notification />
+              <GlobalProvider_notification>
+                  <NotificationList />
+              </GlobalProvider_notification>
       </div>
 
       <a href="/" className="navbar-item">
