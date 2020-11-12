@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GetAppIcon from '@material-ui/icons/GetAppRounded';
 import PersonIcon from '@material-ui/icons/PersonRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
@@ -20,6 +20,7 @@ import './Navbar.css'
 function Navbar () {
 
   const [open, setOpen] = React.useState(false);
+  const [currency, setCurrency] = useState(cookie.load('currency'))
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -35,9 +36,35 @@ function Navbar () {
     console.log("cookie clear and logout")
     cookie.remove('userInfo', { path: '/' })
     cookie.remove('trackerData', { path: '/' })
+    cookie.remove('currency', { path: '/' })
     window.location.href = '/'
   }
   
+  const storage = window.localStorage;
+  const data = storage.currencies;
+
+  if (data == undefined || data == null || data == "")
+  {
+      data = 'null';
+  }
+  else
+  {
+      console.log(data);
+  }
+
+  const currencies = JSON.parse(data);
+
+  // const currencies = JSON.parse(storage.currencies);
+  const currencyChoice = currencies.map(currency =>
+    <option key={currency} value={currency}> {currency} </option>      
+  );
+
+  // const baseCurrency = cookie.load('currency')
+
+  const changeBaseCurrency = (e) => {
+    cookie.save('currency', e.target.value, { path: '/' })
+    setCurrency(e.target.value)
+  }
 
   return (
     // Header Nav Bar and connect to the desire pages 
@@ -47,6 +74,13 @@ function Navbar () {
 
       <a href="/tracker" className="navbar-item">Tracker</a>
       <a href="/budget" className="navbar-item">Budget</a>
+
+      {/* <div> */}
+        <select  value={currency} onChange={changeBaseCurrency}>
+          {currencyChoice}
+          <option>{currency}</option>
+        </select>
+      {/* </div> */}
       
       <div className="navbar-item" onClick={handleClickOpen}>
         <GetAppIcon style={{ color: '#404040', fontSize: 24 }}/>
@@ -69,7 +103,7 @@ function Navbar () {
           </Button>
           <Button onClick={handleClose} color="primary">
             <CsvDownload 
-              data={cookie.load('trackerData')}
+              data={JSON.parse(localStorage.trackerData)}
               filename="tracker_history.csv"
               style={{ 
                 boxShadow:"inset 0px 1px 0px 0px #e184f3",
