@@ -96,14 +96,15 @@ function Navbar () {
         </DialogActions>
       </Dialog>
 
-      <div className="notifier">
-          <a href="/account" className="navbar-item">
-              <PersonIcon style={{ color: '#404040', fontSize: 24 }}/>
-          </a>
+        <a href="/account" className="navbar-item">
+            <PersonIcon style={{ color: '#404040', fontSize: 24 }} />
+        </a>
+
+        <div className="notifier">
               <GlobalProvider_notification>
                   <NotificationList />
               </GlobalProvider_notification>
-      </div>
+        </div>
 
       <a href="/" className="navbar-item">
         <ExitToAppIcon style={{ color: '#404040', fontSize: 24 }} onClick={logout} />
