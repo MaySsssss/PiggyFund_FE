@@ -31,17 +31,24 @@ export const Budget = ({ budget }) => {
         <>
             <li className="budgetBox">
                 <div className="budgetInfo">
-                    {budget.Category}
-                    <span>${budget.Spent}/${budget.newAmount} ({(100 * budget.Progress).toFixed(2) + '%'})</span>
+                        {budget.Category}
+                        <span >${budget.Spent}/${budget.newAmount} ({(100 * budget.Progress).toFixed(2) + '%'})</span>
+                    
                 </div>
-                <div className="progressBar">
-                    {progress(budget)}
+                <div className="tooltip">
+                    <div className="progressBar">
+                        {progress(budget)}
+                        <span class="tooltiptext">{budget.alert}</span>
+                    </div>
                 </div>
+                
                 <button
                     onClick={() => { deleteBudget(budget._id); openNotificationWithIcon('warning') }}
                     className="delete-btn">
                     x
                 </button>
+                
+            
             </li>
         </>
     );

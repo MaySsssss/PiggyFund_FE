@@ -45,6 +45,15 @@ export const BudgetList = () => {
 
             // b.Progress = b.Spent / b.Amount;
             // b.Spent = b.Progress * b.Amount;
+
+            if(b.Progress >= 0.50 && b.Progress < 1) {
+                b.alert = 'be careful';
+                // console.log('over 50')
+            } else if (b.Progress >= 1){
+                b.alert = "exceed";
+            }else{
+                b.alert = "good job";
+            }
         });
 
         return budgets;
@@ -66,7 +75,7 @@ export const BudgetList = () => {
 
     return (
         <>
-            <h3>Budgets</h3>
+            <h3>Lists</h3>
             <ul className="list">
                 {budgetListContent(budgetsWithProgress)}
             </ul>

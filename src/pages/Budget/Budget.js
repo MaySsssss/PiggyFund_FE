@@ -6,13 +6,14 @@ import { GlobalProvider_budget } from '../../context/GlobalState_budget';
 import moment, { months } from 'moment';
 
 import '../Tracker/Tracker.css'
-import { notification, Drawer, Form, Col, Row } from 'antd';
+import { notification, Drawer, Form, Col, Row} from 'antd';
 
 import cookie from 'react-cookies'
 
 function onOk(value) {
     console.log('onOk: ', value);
 }
+
 
 export const loginUser = () => {
     let id = parseInt(cookie.load('userInfo'))
