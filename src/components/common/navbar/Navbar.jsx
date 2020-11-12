@@ -13,9 +13,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 
-import cookie from 'react-cookies'
+import cookie from 'react-cookies';
 
-import './Navbar.css'
+import { Notification } from './Notification';
+import './Navbar.css';
 
 function Navbar () {
 
@@ -94,9 +95,12 @@ function Navbar () {
         </DialogActions>
       </Dialog>
 
-      <a href="/account" className="navbar-item">
-        <PersonIcon style={{ color: '#404040', fontSize: 24 }}/>
-      </a>
+      <div className="notifier">
+          <a href="/account" className="navbar-item">
+              <PersonIcon style={{ color: '#404040', fontSize: 24 }}/>
+          </a>
+          <Notification />
+      </div>
 
       <a href="/" className="navbar-item">
         <ExitToAppIcon style={{ color: '#404040', fontSize: 24 }} onClick={logout} />

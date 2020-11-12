@@ -14,3 +14,31 @@
   text-transform: uppercase;
   outline: none;
 }
+
+.notifier {
+    position: relative;
+    top: 20px;
+    display: inline-block;
+}
+
+.notifier .notification {
+    visibility: hidden;
+    width: 300px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    right: 0px;
+}
+
+.notifier:hover .notification {
+    visibility: visible;
+}

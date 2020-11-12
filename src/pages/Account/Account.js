@@ -1,16 +1,34 @@
 import React, { Component } from 'react';
-import cookie from 'react-cookies'
+import cookie from 'react-cookies';
+import { notification, Drawer, Form, Col, Row, DatePicker } from 'antd';
+import moment from 'moment';
+
+export const loginUser = () => {
+    let id = parseInt(cookie.load('userInfo'))
+    return id
+};
+
+function onOk(value) {
+    console.log('onOk: ', value);
+}
 
 export default class Account extends Component {
   state = {
     rates: [],
     currencies: [],
-    baseCurrency: 'AUD'
+    baseCurrency: 'AUD',
+    visible: false,
+    error: null,
+    isLoaded: false,
+    datas: {
+        date: "",
+        message: ""
+    }
   };
 
   componentDidMount() {
     this.callAPI('AUD')
-  }
+  };
 
   callAPI = async(base) => {
     try {
@@ -31,13 +49,62 @@ export default class Account extends Component {
     } catch (err) {
       console.log(err);
     }
-  } 
+  };
 
   changeBaseCurrency = (e) => {
     const { rates } = this.state;
     this.setState({ baseCurrency: e.target.value});
     cookie.save('currency', e.target.value, { path: '/' })
     cookie.save('rate', rates[e.target.value], { path: '/' })
+  };
+
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  onClose = () => {
+    this.setState({
+      visible: false,
+    });
+  };
+
+  openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Add',
+      description:
+        'Add new notification success.',
+    });
+  };
+
+  addNotification = _ => {
+    const { datas } = this.state;
+      let userid = loginUser();
+      if (datas.message.length === 0) {
+          notification['error']({
+              message: 'Add',
+              description:
+                  'Please enter the message.',
+          });
+      } else if (datas.date.length === 0 || moment(datas.date).diff(moment().startOf('day'), "days") <= 0) {
+          notification['error']({
+              message: 'Add',
+              description:
+                  'Please enter a valid date (after today).',
+          });
+      } else {
+          fetch(`https://be-4920.herokuapp.com/getall`)
+              .then(console.log('Add item success'))
+              .catch(error =>
+                  this.setState({
+                      isLoaded: true,
+                      error: error
+                  })
+          );
+          this.openNotificationWithIcon('success');
+          this.onClose();
+      }
   }
 
   render() {
@@ -52,6 +119,60 @@ export default class Account extends Component {
           {currencyChoice}
           <option>{cookie.load('currency')}</option>
         </select>
+        <button className='back-btn' onClick={this.showDrawer} type="primary">Add Notification</button>
+
+            <Drawer
+                title="Add a new notification"
+                width={520}
+                onClose={this.onClose}
+                visible={this.state.visible}
+                bodyStyle={{ paddingBottom: 80 }}
+                footer={
+                    <div
+                        style={{
+                            textAlign: 'right',
+                        }}
+                    >
+                        <button className='additem-btn' type="primary" onClick={this.onClose} style={{ marginRight: 8 }}>Cancel</button>
+                        <button className='additem-btn' onClick={() => { this.addNotification(); }} type="primary">Add Budget</button>
+                    </div>
+                }
+            >
+                <Form layout="vertical" hideRequiredMark>
+                    <Row gutter={16}>
+                        <Col span={24}>
+                            <Form.Item
+                                name="dateTime"
+                                label="DateTime"
+                                rules={[{ required: true, message: 'Please choose the dateTime' }]}
+                            >
+                                <DatePicker className='date-input'
+                                    size="large"
+                                    style={{ width: '100%' }}
+                                    onChange={e => { if (e) { this.state.datas.date = e.toISOString(); } }}
+                                    onOk={onOk}
+                                />
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                    <Row gutter={16}>
+                        <Col span={24}>
+                            <Form.Item
+                                name="message"
+                                label="Message"
+                                rules={[{ required: true, message: 'Please enter the message' }]}
+                            >
+                                <input
+                                    type="text"
+                                    placeholder="Enter message..."
+                                    value={this.state.datas.message}
+                                    onChange={e => { this.state.datas.message = e; }}
+                                />
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                </Form>
+            </Drawer>
       </div>
     );
   }
