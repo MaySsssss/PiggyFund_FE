@@ -30,15 +30,11 @@ export default class Tracker extends Component {
       amount: ""
     },
     date: "", 
-    categories: [],
-    rates: [],
-    currencies: [],
-    baseCurrency: 'AUD'
+    categories: []
   };
 
   componentDidMount() {
     this.getCategory()
-    this.callAPI('AUD')
   }
 
   showDrawer = () => {
@@ -72,33 +68,6 @@ export default class Tracker extends Component {
       console.log(err);
     }
   }  
-
-  callAPI = async(base) => {
-    try {
-      let res = await fetch(`https://api.exchangeratesapi.io/latest?base=${base}`);
-      let data = await res.json();
-      let rate = data['rates']
-      let sort_curr = Object.keys(data['rates']).sort()
-      this.setState({
-        rates: rate,
-        currencies: sort_curr
-      })
-      
-      // let storage = window.localStorage;
-      // storage.rates = JSON.stringify(rate);
-      // storage.currencies = JSON.stringify(sort_curr);
-
-      if (cookie.load('currency') == null) {
-        cookie.save('currency', 'AUD', { path: '/' })
-        cookie.save('rate', rate['AUD'], { path: '/' })
-      }
-
-      // console.log(sort_curr)
-
-    } catch (err) {
-      console.log(err);
-    }
-  } 
 
   addItems = _ => {
     const { datas, date, inputcategory } = this.state;
@@ -148,33 +117,11 @@ export default class Tracker extends Component {
     // console.log('onSelect', data);
   };
 
-  changeBaseCurrency = (e) => {
-    const { rates } = this.state;
-
-    this.setState({ baseCurrency: e.target.value});
-    cookie.save('currency', e.target.value, { path: '/' })
-    cookie.save('rate', rates[e.target.value], { path: '/' })
-    // cookie.save('changeCurr', 'yes', { path: '/' })
-    // this.callAPI(this.baseCurrency)
-    // console.log(e.target.value)
-  }
-
   render() {
-    // const { datas, categories } = this.state;
+    const { datas, categories } = this.state;
 
-    const { datas, categories, currencies } = this.state;
-
-    const currencyChoice = currencies.map(currency =>
-      <option key={currency} value={currency}> {currency} </option>      
-    );
     return (
       <GlobalProvider>
-        <div>
-          <select  value={cookie.load('currency')} onChange={this.changeBaseCurrency}>
-            {currencyChoice}
-            <option>{cookie.load('currency')}</option>
-          </select>
-        </div>
         <div className="container">
           <div className="left_container">
           <Balance />
