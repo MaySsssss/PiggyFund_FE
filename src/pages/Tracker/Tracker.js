@@ -204,6 +204,7 @@ export default class Tracker extends Component {
           </div>
 
           <div className="right_container">
+            
             <TransactionList />
           </div>
           

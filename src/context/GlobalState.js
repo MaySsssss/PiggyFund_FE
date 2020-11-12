@@ -3,6 +3,7 @@ import AppReducer from './AppReducer';
 import moment, { months } from 'moment';
 import cookie from 'react-cookies'
 import { Header } from '../components/Transaction/Header';
+import './global.css'
 
 const ITME_API = `https://be-4920.herokuapp.com/getall`
 
@@ -86,6 +87,8 @@ export const GlobalProvider = ({ children }) => {
     state.month = month;
   };
 
+
+
   return (<GlobalContext.Provider value={{
     transactions: getRemoval(state.transactions),
     all_transactions: getRemovalAll(state.all_transactions),
@@ -95,8 +98,9 @@ export const GlobalProvider = ({ children }) => {
   }}>
     <Header />
     <div className="month_display">
-      <select
+      <select className="month"
         onChange={e => setMonthToDisplay(e.target.value)}
+        
       >
         {months().map(month => {
             if (moment().format('MMMM').localeCompare(month) === 0) {
