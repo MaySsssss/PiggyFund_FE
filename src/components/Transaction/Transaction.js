@@ -1,7 +1,10 @@
 import React from 'react';
 import Moment from 'react-moment';
+import cookie from 'react-cookies'
 
 import { notification } from 'antd';
+
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 export const Transaction = ({ transaction }) => {
 
@@ -23,16 +26,23 @@ export const Transaction = ({ transaction }) => {
 
   const sign = transaction.newAmount < 0 ? '-' : '+';
 
+  const convertToCurrency = cookie.load('currency');
+  
   return (
     <li className={transaction.newAmount < 0 ? 'minus' : 'plus'}>
       {transaction.Category} 
-      <p><Moment format="YYYY:MM:DD HH:mm:ss">{transaction.Time}</Moment></p>
-      <span>{sign}${Math.abs(transaction.newAmount)}</span>
-      <button 
+      <p><Moment format="YYYY-MM-DD HH:mm:ss">{transaction.Time}</Moment></p>
+      <span className="thick">{sign} {Math.abs(transaction.newAmount)} {convertToCurrency}</span>
+      {/* <button 
         onClick={() => {deleteTransaction(transaction._id); openNotificationWithIcon('warning')}} 
         className="delete-btn">
           x
-      </button>
+      </button> */}
+      {/* <ExitToAppIcon style={{ color: '#404040', fontSize: 24 }} onClick={logout} /> */}
+      <DeleteOutlineIcon 
+        style={{ color: '#c0392b', fontSize: 24 }}
+        onClick={() => {deleteTransaction(transaction._id); openNotificationWithIcon('warning')}} 
+      />
     </li>
   )
 }

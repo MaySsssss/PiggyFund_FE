@@ -47,13 +47,20 @@ export const GlobalProvider = ({ children }) => {
     let newarr = [];
     let userid = loginUser();
     // console.log("window", parseInt(userid))
-    // const convertToCurrency = cookie.load('currency');
-    const rates = cookie.load('rate');
+    var convertToCurrency = cookie.load('currency');
+    if (!convertToCurrency) {
+      cookie.save('currency', 'AUD', { path: '/' });
+    }
+    var rates = cookie.load('rate');
+    if (!rates) {
+      rates = 1;
+      cookie.save('rate', 1, { path: '/' })
+    }
     // console.log(convertToCurrency, rates)
     for (const value of arr) {
         if (value.UserID === parseInt(userid)) {
-          let baseAmount = parseFloat(value.Amount).toFixed(2)
-          let res = parseFloat(baseAmount * rates).toFixed(2);
+          let baseAmount = parseInt(value.Amount)
+          let res = parseInt(baseAmount * rates)
           value.newAmount = res.toString()
           newarr.push(value);
         }

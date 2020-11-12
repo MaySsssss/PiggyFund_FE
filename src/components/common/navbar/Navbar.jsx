@@ -38,6 +38,7 @@ function Navbar () {
     cookie.remove('userInfo', { path: '/' })
     cookie.remove('trackerData', { path: '/' })
     cookie.remove('currency', { path: '/' })
+    cookie.remove('rate', { path: '/' })
     window.location.href = '/'
   }
   
@@ -48,8 +49,8 @@ function Navbar () {
       {/* <a href="/" className="navbar-item">Home</a> */}
       {/*<a href="/" className="navbar-item">Tracker</a>*/}
 
-      <a href="/tracker" className="navbar-item">Tracker</a>
-      <a href="/budget" className="navbar-item">Budget</a>
+      {/* <a href="/tracker" className="navbar-item">Tracker</a>
+      <a href="/budget" className="navbar-item">Budget</a> */}
       
       <a className="navbar-item" onClick={handleClickOpen}>
         <GetAppIcon style={{ color: '#404040', fontSize: 24 }}/>
@@ -77,8 +78,8 @@ function Navbar () {
               filename="tracker_history.csv"
               style={{ 
                 boxShadow:"inset 0px 1px 0px 0px #e184f3",
-                background:"linear-gradient(to bottom, #c123de 5%, #a20dbd 100%)",
-                backgroundColor:"#c123de",
+                background:"linear-gradient(to bottom, #5F6EC0 5%, #3247B7 100%)",
+                backgroundColor:"#5F6EC0",
                 borderRadius:"6px",
                 border:"1px solid #a511c0",
                 display:"inline-block",
@@ -90,21 +91,21 @@ function Navbar () {
                 textShadow:"0px 1px 0px #9b14b3"
               }}
             >
-              Export
+              EXPORT
             </CsvDownload>
           </Button>
         </DialogActions>
       </Dialog>
 
-        <a href="/account" className="navbar-item">
-            <PersonIcon style={{ color: '#404040', fontSize: 24 }} />
-        </a>
-
-        <div className="notifier">
-              <GlobalProvider_notification>
-                  <NotificationList />
-              </GlobalProvider_notification>
-        </div>
+      <a href="/account" className="navbar-item">
+          <PersonIcon style={{ color: '#404040', fontSize: 24 }} />
+      </a>
+              
+      <div className="notifier">
+            <GlobalProvider_notification>
+                <NotificationList />
+            </GlobalProvider_notification>
+      </div>
 
       <a href="/" className="navbar-item">
         <ExitToAppIcon style={{ color: '#404040', fontSize: 24 }} onClick={logout} />

@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import logo from '../picture/logo.jpg';
 
 import cookie from 'react-cookies'
 
@@ -38,6 +39,11 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+  },
+  img: {
+    width: '120%', 
+    height: '120%', 
+    // marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -109,7 +115,8 @@ export default function Login() {
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
-              <LockIcon />
+              {/* <LockIcon /> */}
+              <img className={classes.img} src={logo} alt="logo" />
             </Avatar>
             <Typography component="h1" variant="h5">
               Sign in

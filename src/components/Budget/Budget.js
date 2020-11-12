@@ -1,6 +1,7 @@
 import React from 'react';
 import { notification } from 'antd';
 import './Progress.css';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 export const Budget = ({ budget }) => {
     function progress(budget) {
@@ -31,9 +32,12 @@ export const Budget = ({ budget }) => {
         <>
             <li className="budgetBox">
                 <div className="budgetInfo">
-                        {budget.Category}
-                        <span >${budget.Spent}/${budget.newAmount} ({(100 * budget.Progress).toFixed(2) + '%'})</span>
-                    
+                    {budget.Category}
+                    <span >${budget.Spent}/${budget.newAmount} ({(100 * budget.Progress).toFixed(2) + '%'})</span>
+                    <DeleteOutlineIcon 
+                        style={{ color: '#c0392b', fontSize: 24 }}
+                        onClick={() => { deleteBudget(budget._id); openNotificationWithIcon('warning') }}
+                    />
                 </div>
                 <div className="tooltip">
                     <div className="progressBar">
@@ -42,13 +46,11 @@ export const Budget = ({ budget }) => {
                     </div>
                 </div>
                 
-                <button
+                {/* <button
                     onClick={() => { deleteBudget(budget._id); openNotificationWithIcon('warning') }}
                     className="delete-btn">
                     x
-                </button>
-                
-            
+                </button> */}
             </li>
         </>
     );

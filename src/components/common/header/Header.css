@@ -31,12 +31,26 @@
   flex-direction: column;
 }
 
+.header-top__navbar-row {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
 .header-top__seperator {
   width: 100%;
   border: none;
-  height: 2px;
+  height: 4px;
   margin-top: 2px;
   background-color: black;
+}
+
+.header-top__navigation-left {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  /* justify-content: flex-start; */
+  margin-right: 55px;
 }
 
 .header-top__navigation {

@@ -9,7 +9,9 @@ import { GlobalProvider } from '../../context/GlobalState';
 import cookie from 'react-cookies'
 
 import './Tracker.css'
-import { notification, Drawer, Form, Col, Row, DatePicker, AutoComplete, Input } from 'antd';
+import { notification, Drawer, Form, Col, Row, DatePicker, AutoComplete, Input, Radio } from 'antd';
+
+const Option = AutoComplete.Option;
 
 function onOk(value) {
   console.log('onOk: ', value);
@@ -30,7 +32,8 @@ export default class Tracker extends Component {
       amount: ""
     },
     date: "", 
-    categories: []
+    categories: [],
+    in_out: ""
   };
 
   componentDidMount() {
@@ -70,7 +73,7 @@ export default class Tracker extends Component {
   }  
 
   addItems = _ => {
-    const { datas, date, inputcategory } = this.state;
+    const { datas, date, inputcategory, in_out } = this.state;
       let userid = loginUser();
       if (inputcategory.length === 0) {
           notification['error']({
@@ -85,7 +88,17 @@ export default class Tracker extends Component {
                   'Please enter a valid number for amount (non-zero).',
           });
       } else {
-          fetch(`https://be-4920.herokuapp.com/spending?category=${inputcategory}&amount=${datas.amount}&time=${date}&userid=${userid}`)
+          var tot = parseFloat(datas.amount).toFixed(2)
+          let rates = cookie.load('rate')
+          let c = cookie.load('currency')
+          console.log(c, rates)
+          tot = tot / rates
+          if (in_out === 2) {
+            tot = tot * -1
+          }
+          var res = tot.toString()
+          
+          fetch(`https://be-4920.herokuapp.com/spending?category=${inputcategory}&amount=${res}&time=${date}&userid=${userid}`)
               .then(console.log('Add item success'))
               .catch(error =>
                   this.setState({
@@ -117,8 +130,17 @@ export default class Tracker extends Component {
     // console.log('onSelect', data);
   };
 
+  changeType = (data) => {
+    // const value = data.target.value
+    this.setState({
+      in_out: data.target.value
+    })
+  }
+
   render() {
     const { datas, categories } = this.state;
+    // const children = categories.map(c => <Option key={c}>{c}</Option>);
+    // const children = categories.map(c => <Option key={c}>{c}</Option>);
 
     return (
       <GlobalProvider>
@@ -150,7 +172,7 @@ export default class Tracker extends Component {
                 <Col span={24}>
                   <Form.Item
                     name="dateTime"
-                    label="DateTime"
+                    label="Date"
                     rules={[{ required: true, message: 'Please choose the dateTime' }]}
                   >
                     <DatePicker className='date-input' 
@@ -180,7 +202,16 @@ export default class Tracker extends Component {
                           />
                         }
                     />
+
                   </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={24}>
+                  <Radio.Group name="radiogroup" onChange={this.changeType}>
+                    <Radio value={1}>Income</Radio>
+                    <Radio value={2}>Expense</Radio>
+                  </Radio.Group>
                 </Col>
               </Row>
               <Row gutter={16}>

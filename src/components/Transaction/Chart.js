@@ -24,12 +24,12 @@ export const Chart = () => {
       {
         label: 'Balance',
         backgroundColor: [
-          '#B21F00',
-          '#2ecc71'
+          '#2ecc71',
+          '#B21F00'
         ],
         hoverBackgroundColor: [
-        '#501800',
-        '#4B5000'
+          '#4B5000',
+          '#501800'
         ],
         data: [income, outcome]
       }

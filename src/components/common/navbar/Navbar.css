@@ -15,11 +15,34 @@
   outline: none;
 }
 
+.navbar-item-right {
+  display: flex;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px;
+  margin-right: 665px;
+  color: inherit;
+  text-decoration: inherit;
+  text-transform: uppercase;
+  outline: none;
+}
+
 .notifier {
     position: relative;
-    top: 22px;
-    left: 20px;
+    /* top: 22px;
+    left: 20px; */
     display: inline-block;
+
+    display: flex;
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    color: inherit;
+    text-decoration: inherit;
+    text-transform: uppercase;
+    outline: none;
 }
 
 .notifier .notification {

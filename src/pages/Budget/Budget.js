@@ -87,6 +87,7 @@ export default class Budget extends Component {
             <GlobalProvider_budget>
                 <div className="container">
                   <div className="left_container">
+                    {/* <h3>Save Future Money</h3> */}
                     <Chart />
                     <button className='back-btn' onClick={this.showDrawer} type="primary">Add Budget</button>
                   </div>

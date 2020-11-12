@@ -3,6 +3,8 @@ import cookie from 'react-cookies';
 import { notification, Drawer, Form, Col, Row, DatePicker } from 'antd';
 import moment from 'moment';
 
+import './account.css'
+
 export const loginUser = () => {
     let id = parseInt(cookie.load('userInfo'))
     return id
@@ -115,10 +117,17 @@ export default class Account extends Component {
     );
     return (
       <div>
-        <select  value={cookie.load('currency')} onChange={this.changeBaseCurrency}>
-          {currencyChoice}
-          <option>{cookie.load('currency')}</option>
-        </select>
+        <label className="currency-font">
+          Currency: 
+          <select 
+            className="currency-select" 
+            value={cookie.load('currency')} 
+            onChange={this.changeBaseCurrency}
+          >
+            {currencyChoice}
+            <option>{cookie.load('currency')}</option>
+          </select>
+        </label>
         <button className='back-btn' onClick={this.showDrawer} type="primary">Add Notification</button>
 
             <Drawer
@@ -134,7 +143,7 @@ export default class Account extends Component {
                         }}
                     >
                         <button className='additem-btn' type="primary" onClick={this.onClose} style={{ marginRight: 8 }}>Cancel</button>
-                        <button className='additem-btn' onClick={() => { this.addNotification(); }} type="primary">Add Budget</button>
+                        <button className='additem-btn' onClick={() => { this.addNotification(); }} type="primary">Add Message</button>
                     </div>
                 }
             >
@@ -143,7 +152,7 @@ export default class Account extends Component {
                         <Col span={24}>
                             <Form.Item
                                 name="dateTime"
-                                label="DateTime"
+                                label="Date"
                                 rules={[{ required: true, message: 'Please choose the dateTime' }]}
                             >
                                 <DatePicker className='date-input'
