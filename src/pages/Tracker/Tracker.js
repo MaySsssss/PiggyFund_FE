@@ -30,15 +30,11 @@ export default class Tracker extends Component {
       amount: ""
     },
     date: "", 
-    categories: [],
-    rates: [],
-    currencies: [],
-    baseCurrency: 'AUD'
+    categories: []
   };
 
   componentDidMount() {
     this.getCategory()
-    this.callAPI('AUD')
   }
 
   showDrawer = () => {
@@ -71,53 +67,7 @@ export default class Tracker extends Component {
     } catch (err) {
       console.log(err);
     }
-  } 
-  
-  // changeBaseCurrency = (e) => {
-  //   this.setState({ baseCurrency: e.target.value});
-  //   cookie.save('currency', e.target.value, { path: '/' })
-  //   cookie.save('changeCurr', 'yes', { path: '/' })
-  //   // this.callAPI(this.baseCurrency)
-  //   console.log(this.baseCurrency)
-  // }
-
-  callAPI = async(base) => {
-    try {
-      let res = await fetch(`https://api.exchangeratesapi.io/latest?base=${base}`);
-      let data = await res.json();
-      let rate = data['rates']
-      let sort_curr = Object.keys(data['rates']).sort()
-      this.setState({
-        rates: rate,
-        currencies: sort_curr
-      })
-      
-      let storage = window.localStorage;
-      storage.rates = JSON.stringify(rate);
-      storage.currencies = JSON.stringify(sort_curr);
-
-      if (cookie.load('currency') == null) {
-        cookie.save('currency', 'AUD', { path: '/' })
-      }
-
-    } catch (err) {
-      console.log(err);
-    }
   }  
-
-  // callAPI(base) {
-  //   const api = `https://api.exchangeratesapi.io/latest?base=${base}`;
-     
-  //    fetch(api)
-  //     .then(results => {
-  //       return results.json();
-  //     })
-  //     .then(data => this.setState({
-  //       rates: data['rates'],
-  //       currencies: Object.keys(data['rates']).sort()
-  //     }));
-    
-  // } 
 
   addItems = _ => {
     const { datas, date, inputcategory } = this.state;
@@ -169,22 +119,10 @@ export default class Tracker extends Component {
 
   render() {
     const { datas, categories } = this.state;
-    // const { datas, categories, currencies, baseCurrency } = this.state;
-
-    // const currencyChoice = currencies.map(currency =>
-    //   <option key={currency} value={currency}> {currency} </option>      
-    // );
-
     return (
       <GlobalProvider>
 
         <div className="container">
-          {/* <div>
-            <select  value={baseCurrency} onChange={this.changeBaseCurrency}>
-              {currencyChoice}
-              <option>{'AUD'}</option>
-            </select>
-          </div> */}
           <div className="left_container">
           <Balance />
           <Chart />

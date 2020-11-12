@@ -13,11 +13,7 @@ export const trackerData = () => {
 
 export const BudgetList = () => {
     const { budgets } = useContext(GlobalContext_budget);
-    const transactions = JSON.parse(localStorage.trackerData);
-
-    const convertToCurrency = cookie.load('currency');
-    const storage = window.localStorage;
-    const rates = JSON.parse(storage.rates);
+    const transactions = trackerData();
 
     function calculateProgress(budgets, transactions) {
         var results = [];
@@ -38,12 +34,8 @@ export const BudgetList = () => {
         });
 
         results.forEach(function (b) {
-            var newSpent = parseFloat(b.Spent * rates[convertToCurrency]).toFixed(2);
-            var newAmount = parseFloat(b.Amount * rates[convertToCurrency]).toFixed(2);
-            b.Progress = newSpent / newAmount;
-            b.Spent = b.Progress * newAmount;
-            // b.Progress = b.Spent / b.Amount;
-            // b.Spent = b.Progress * b.Amount;
+            b.Progress = b.Spent / b.Amount;
+            b.Spent = b.Progress * b.Amount;
         });
 
         return budgets;

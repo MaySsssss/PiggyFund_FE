@@ -41,26 +41,16 @@ export const GlobalProvider = ({ children }) => {
     fetchData()
   })
 
-  const convertToCurrency = cookie.load('currency');
-  const storage = window.localStorage;
-  const rates = JSON.parse(storage.rates);
-
   function getRemoval(arr1) {
     let arr = [...arr1];
     let newarr = [];
     let userid = loginUser();
-
+    // console.log("window", parseInt(userid))
     for (const value of arr) {
         if (value.UserID === parseInt(userid)) {
-          let baseAmount = parseFloat(value.Amount).toFixed(2)
-          let res = parseFloat(baseAmount * rates[convertToCurrency]).toFixed(2);
-          value.newAmount = res.toString()
           newarr.push(value);
         }
     }
-
-    let storage = window.localStorage;
-    storage.trackerData = JSON.stringify(newarr);
     return newarr;
   }
 
@@ -73,9 +63,7 @@ export const GlobalProvider = ({ children }) => {
           newarr.push(value);
         }
     }
-    // let storage = window.localStorage;
-    // storage.trackerData = JSON.stringify(newarr);
-
+    cookie.save('trackerData', newarr, { path: '/' })
     return newarr;
   }
 
@@ -97,7 +85,6 @@ export const GlobalProvider = ({ children }) => {
   const setMonthToDisplay = function(month) {
     state.month = month;
   };
-  
 
   return (<GlobalContext.Provider value={{
     transactions: getRemoval(state.transactions),
@@ -107,19 +94,19 @@ export const GlobalProvider = ({ children }) => {
     addTransaction
   }}>
     <Header />
-  
-    <select
-      onChange={e => setMonthToDisplay(e.target.value)}
-    >
-      {months().map(month => {
-          if (moment().format('MMMM').localeCompare(month) === 0) {
-              return (<option value={month} selected>{month}</option>)
-          } else {
-              return (<option value={month}>{month}</option>)
-          }
-      })}
-    </select>
-
+    <div className="month_display">
+      <select
+        onChange={e => setMonthToDisplay(e.target.value)}
+      >
+        {months().map(month => {
+            if (moment().format('MMMM').localeCompare(month) === 0) {
+                return (<option value={month} selected>{month}</option>)
+            } else {
+                return (<option value={month}>{month}</option>)
+            }
+        })}
+      </select>
+    </div>
     
     {children}
   </GlobalContext.Provider>);

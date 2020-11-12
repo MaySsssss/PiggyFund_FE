@@ -1,6 +1,5 @@
 import React from 'react';
 import Moment from 'react-moment';
-import cookie from 'react-cookies'
 
 import { notification } from 'antd';
 
@@ -22,15 +21,13 @@ export const Transaction = ({ transaction }) => {
     });
   };
 
-  const sign = transaction.newAmount < 0 ? '-' : '+';
-
-  let currency = cookie.load('currency');
+  const sign = transaction.Amount < 0 ? '-' : '+';
 
   return (
-    <li className={transaction.newAmount < 0 ? 'minus' : 'plus'}>
+    <li className={transaction.Amount < 0 ? 'minus' : 'plus'}>
       {transaction.Category} 
       <p><Moment format="YYYY:MM:DD HH:mm:ss">{transaction.Time}</Moment></p>
-      <span>{sign}{Math.abs(transaction.newAmount)} {currency}</span>
+      <span>{sign}${Math.abs(transaction.Amount)}</span>
       <button 
         onClick={() => {deleteTransaction(transaction._id); openNotificationWithIcon('warning')}} 
         className="delete-btn">
