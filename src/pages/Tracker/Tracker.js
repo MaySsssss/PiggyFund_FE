@@ -119,9 +119,9 @@ export default class Tracker extends Component {
 
   render() {
     const { datas, categories } = this.state;
+
     return (
       <GlobalProvider>
-
         <div className="container">
           <div className="left_container">
           <Balance />
@@ -204,6 +204,7 @@ export default class Tracker extends Component {
           </div>
 
           <div className="right_container">
+          
             <TransactionList />
           </div>
           

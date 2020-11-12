@@ -33,9 +33,18 @@ export const BudgetList = () => {
             });
         });
 
+        // const convertToCurrency = cookie.load('currency');
+        const rates = cookie.load('rate');
+
         results.forEach(function (b) {
-            b.Progress = b.Spent / b.Amount;
-            b.Spent = b.Progress * b.Amount;
+            var newSpent = parseFloat(b.Spent * rates).toFixed(2);
+            var newAmount = parseFloat(b.Amount * rates).toFixed(2);
+            b.Progress = newSpent / newAmount;
+            b.Spent = b.Progress * newAmount;
+            b.newAmount = newAmount;
+
+            // b.Progress = b.Spent / b.Amount;
+            // b.Spent = b.Progress * b.Amount;
         });
 
         return budgets;

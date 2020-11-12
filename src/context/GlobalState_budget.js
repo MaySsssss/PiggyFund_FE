@@ -3,6 +3,7 @@ import AppReducer from './AppReducer_budget';
 import moment, { months } from 'moment';
 import { Header } from '../components/Budget/Header';
 import cookie from 'react-cookies'
+import './global.css'
 
 function onOk(value) {
     console.log('onOk: ', value);
@@ -63,7 +64,8 @@ export const GlobalProvider_budget = ({ children }) => {
         // budgets: state.budgets
     }}>
         <Header />
-        <select
+        <div className="month_display">
+        <select className="month"
             onChange={e => setMonthToDisplay(e.target.value)}
             onOk={onOk}
         >
@@ -75,6 +77,8 @@ export const GlobalProvider_budget = ({ children }) => {
                 }
             })}
         </select>
+        </div>
+        
         {children}
     </GlobalContext_budget.Provider>);
 }

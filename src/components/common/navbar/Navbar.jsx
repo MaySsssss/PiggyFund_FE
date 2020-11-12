@@ -36,6 +36,7 @@ function Navbar () {
     console.log("cookie clear and logout")
     cookie.remove('userInfo', { path: '/' })
     cookie.remove('trackerData', { path: '/' })
+    cookie.remove('currency', { path: '/' })
     window.location.href = '/'
   }
   
@@ -49,9 +50,10 @@ function Navbar () {
       <a href="/tracker" className="navbar-item">Tracker</a>
       <a href="/budget" className="navbar-item">Budget</a>
       
-      <div className="navbar-item" onClick={handleClickOpen}>
+      <a className="navbar-item" onClick={handleClickOpen}>
         <GetAppIcon style={{ color: '#404040', fontSize: 24 }}/>
-      </div>
+      </a>
+      
       <Dialog
         fullScreen={fullScreen}
         open={open}
