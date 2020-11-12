@@ -169,12 +169,6 @@ export default class Tracker extends Component {
     );
     return (
       <GlobalProvider>
-        <div>
-          <select  value={cookie.load('currency')} onChange={this.changeBaseCurrency}>
-            {currencyChoice}
-            <option>{cookie.load('currency')}</option>
-          </select>
-        </div>
         <div className="container">
           <div className="left_container">
           <Balance />
@@ -257,7 +251,7 @@ export default class Tracker extends Component {
           </div>
 
           <div className="right_container">
-            
+          
             <TransactionList />
           </div>
           
