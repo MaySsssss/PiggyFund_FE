@@ -35,6 +35,7 @@ function Navbar () {
     console.log("cookie clear and logout")
     cookie.remove('userInfo', { path: '/' })
     cookie.remove('trackerData', { path: '/' })
+    cookie.remove('currency', { path: '/' })
     window.location.href = '/'
   }
   
