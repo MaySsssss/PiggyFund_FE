@@ -32,7 +32,7 @@ export const Budget = ({ budget }) => {
             <li className="budgetBox">
                 <div className="budgetInfo">
                     {budget.Category}
-                    <span>${budget.Spent}/${budget.Amount} ({(100 * budget.Progress).toFixed(2) + '%'})</span>
+                    <span>${budget.Spent}/${budget.newAmount} ({(100 * budget.Progress).toFixed(2) + '%'})</span>
                 </div>
                 <div className="progressBar">
                     {progress(budget)}
