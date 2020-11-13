@@ -3,6 +3,8 @@ import moment from 'moment';
 import cookie from 'react-cookies';
 import './global.css';
 
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+
 function onOk(value) {
     console.log('onOk: ', value);
 }
