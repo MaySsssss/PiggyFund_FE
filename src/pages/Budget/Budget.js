@@ -90,9 +90,9 @@ export default class Budget extends Component {
                 <div className="container">
                   <div className="left_container">
                     {/* <h3>Save Future Money</h3> */}
-                    {/* <h3>Your Budget</h3> */}
-                    <Balance_budget />
+                    <h3>Your Budget</h3>
                     <Chart />
+                    <Balance_budget />
                     <button className='back-btn' onClick={this.showDrawer} type="primary">Add Budget</button>
                   </div>
 
