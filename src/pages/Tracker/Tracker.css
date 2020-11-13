@@ -157,6 +157,8 @@ input[type='number'] {
   overflow-y: scroll;
 }
 
+
+
 .list li {
   background-color: #fff;
   box-shadow: var(--box-shadow);

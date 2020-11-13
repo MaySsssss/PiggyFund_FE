@@ -41,28 +41,28 @@
     margin-left: 50px;
     color: inherit;
     text-decoration: inherit;
-    text-transform: uppercase;
     outline: none;
 }
 
 .notifier .notification {
     visibility: hidden;
-    width: 300px;
+    width: 350px;
     background-color: white;
     color: black;
     text-align: center;
     border-radius: 6px;
     border-style: solid;
     border-color: black;
-    border-width: 2px;
-    padding: 5px 0;
+    border-width: 1px;
+    padding: 20px 10px;
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    top: 40px;
+    top: 50px;
     right: 0px;
 }
 
 .notifier:hover .notification {
     visibility: visible;
 }
+
