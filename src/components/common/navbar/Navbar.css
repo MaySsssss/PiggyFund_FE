@@ -30,8 +30,6 @@
 
 .notifier {
     position: relative;
-    /* top: 22px;
-    left: 20px; */
     display: inline-block;
 
     display: flex;

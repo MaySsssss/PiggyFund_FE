@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from 'react';
 import GetAppIcon from '@material-ui/icons/GetAppRounded';
 import PersonIcon from '@material-ui/icons/PersonRounded';
@@ -46,15 +47,10 @@ function Navbar () {
   return (
     // Header Nav Bar and connect to the desire pages 
     <section className="navbar">
-      {/* <a href="/" className="navbar-item">Home</a> */}
-      {/*<a href="/" className="navbar-item">Tracker</a>*/}
-
-      {/* <a href="/tracker" className="navbar-item">Tracker</a>
-      <a href="/budget" className="navbar-item">Budget</a> */}
       
-      <a className="navbar-item" onClick={handleClickOpen}>
+      <div className="navbar-item" onClick={handleClickOpen}>
         <GetAppIcon style={{ color: '#404040', fontSize: 24 }}/>
-      </a>
+      </div>
       
       <Dialog
         fullScreen={fullScreen}

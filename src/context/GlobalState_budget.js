@@ -44,7 +44,6 @@ export const GlobalProvider_budget = ({ children }) => {
         let arr = [...arr1];
         let newarr = [];
         let userid = loginUser();
-        // console.log("window", parseInt(userid))
         for (const value of arr) {
             if (value.UserID === parseInt(userid)) {
               newarr.push(value);
@@ -61,7 +60,6 @@ export const GlobalProvider_budget = ({ children }) => {
     // eslint-disable-next-line react/jsx-pascal-case
     return (<GlobalContext_budget.Provider value={{
         budgets: getRemoval(state.budgets)
-        // budgets: state.budgets
     }}>
         <Header />
         <div className="month_display">

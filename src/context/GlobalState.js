@@ -36,8 +36,6 @@ export const GlobalProvider = ({ children }) => {
         state.all_transactions = list;
         state.transactions = list.filter(transaction => { return moment(transaction.Time).format('MMMM').localeCompare(state.month) === 0; })
             .sort(function (a, b) { return moment(a.Time).diff(moment(b.Time)); });
-      // console.log(state.all_transactions)
-      // console.log(state.transactions.Time)
     }
     fetchData()
   })
@@ -46,7 +44,6 @@ export const GlobalProvider = ({ children }) => {
     let arr = [...arr1];
     let newarr = [];
     let userid = loginUser();
-    // console.log("window", parseInt(userid))
     var convertToCurrency = cookie.load('currency');
     if (!convertToCurrency) {
       cookie.save('currency', 'AUD', { path: '/' });
@@ -56,7 +53,6 @@ export const GlobalProvider = ({ children }) => {
       rates = 1;
       cookie.save('rate', 1, { path: '/' })
     }
-    // console.log(convertToCurrency, rates)
     for (const value of arr) {
         if (value.UserID === parseInt(userid)) {
           let baseAmount = parseInt(value.Amount)
@@ -65,7 +61,6 @@ export const GlobalProvider = ({ children }) => {
           newarr.push(value);
         }
     }
-    // cookie.save('trackerData', newarr, { path: '/' })
     return newarr;
   }
 
@@ -106,7 +101,6 @@ export const GlobalProvider = ({ children }) => {
   return (<GlobalContext.Provider value={{
     transactions: getRemoval(state.transactions),
     all_transactions: getRemovalAll(state.all_transactions),
-    // transactions: state.transactions,
     deleteTransaction,
     addTransaction
   }}>

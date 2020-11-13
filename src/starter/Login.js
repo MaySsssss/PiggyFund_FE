@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-// import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import logo from '../picture/logo.jpg';
@@ -37,13 +35,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', 
     marginTop: theme.spacing(1),
   },
   img: {
     width: '120%', 
     height: '120%', 
-    // marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -95,11 +92,8 @@ export default function Login() {
   const history = useHistory();
   
   const submitData = () => {
-    // console.log(data)
-    // console.log(validate())
     let user = validate()
     if (user === 1 || user === 2) {
-      // console.log('login success:', user)
       cookie.save('userInfo', user, { path: '/' })
       history.push(`/tracker`)
     }
@@ -110,18 +104,15 @@ export default function Login() {
   return (
     <div>
       <Grid container component="main" className={classes.root}>
-        {/* <CssBaseline /> */}
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
-              {/* <LockIcon /> */}
               <img className={classes.img} src={logo} alt="logo" />
             </Avatar>
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            {/* <form className={classes.form}> */}
               <TextField 
                 onChange={(e) => onChange(e)} 
                 value={email} 
@@ -168,7 +159,6 @@ export default function Login() {
                   </Link>
                 </Grid>
               </Grid>
-            {/* </form> */}
           </div>
         </Grid>
       </Grid>

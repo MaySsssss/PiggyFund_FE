@@ -8,7 +8,7 @@ export const NotificationList = () => {
     const { notifications } = useContext(GlobalContext_notification);
 
     function notificationIcon(notifications) {
-        if (notifications.length == 0) {
+        if (notifications.length === 0) {
             return (<NotificationsNoneIcon style={{ color: '#404040', fontSize: 24 }} />);
         } else {
             return (<NotificationsIcon style={{ color: '#404040', fontSize: 24 }} />);
@@ -16,7 +16,7 @@ export const NotificationList = () => {
     }
 
     function notificationListContent(notifications) {
-        if (notifications.length == 0) {
+        if (notifications.length === 0) {
             return (<p>There is no notification.</p>);
         } else {
             return (notifications.map(notification => {

@@ -11,8 +11,6 @@ import cookie from 'react-cookies'
 import './Tracker.css'
 import { notification, Drawer, Form, Col, Row, DatePicker, AutoComplete, Input, Radio } from 'antd';
 
-const Option = AutoComplete.Option;
-
 function onOk(value) {
   console.log('onOk: ', value);
 }
@@ -62,7 +60,7 @@ export default class Tracker extends Component {
 
   getCategory = async() => {
     try {
-      let res = await fetch(`http://ballistic-circular-parent.glitch.me/getallcategory`);
+      let res = await fetch(`https://be-4920.herokuapp.com/getallcategory`);
       let posts = await res.json();
       this.setState({
         categories: posts
@@ -121,17 +119,15 @@ export default class Tracker extends Component {
     this.setState({
       inputcategory: data
     })
-    // console.log('onSelect', data);
   };
+
   onChange_inputauto = (data) => {
     this.setState({
       inputcategory: data
     })
-    // console.log('onSelect', data);
   };
 
   changeType = (data) => {
-    // const value = data.target.value
     this.setState({
       in_out: data.target.value
     })
@@ -139,8 +135,6 @@ export default class Tracker extends Component {
 
   render() {
     const { datas, categories } = this.state;
-    // const children = categories.map(c => <Option key={c}>{c}</Option>);
-    // const children = categories.map(c => <Option key={c}>{c}</Option>);
 
     return (
       <GlobalProvider>
@@ -192,7 +186,8 @@ export default class Tracker extends Component {
                     rules={[{ required: true, message: 'Please enter the category' }]}
                   >
                     <AutoComplete
-                        dataSource={categories}
+                        options={categories}
+                        // dataSource={categories}
                         onChange={this.onChange_inputauto}
                         onSearch={this.onSelect_inputauto}
                         children={

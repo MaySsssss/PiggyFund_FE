@@ -163,7 +163,7 @@ export default class Account extends Component {
                                 <DatePicker className='date-input'
                                     size="large"
                                     style={{ width: '100%' }}
-                                    onChange={e => { if (e) { this.state.datas.date = e.toISOString(); } }}
+                                    onChange={e => { if (e) { this.setState({ datas: { ...datas, date: e.toISOString() } })}}}
                                     onOk={onOk}
                                 />
                             </Form.Item>

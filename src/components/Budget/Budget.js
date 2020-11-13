@@ -45,12 +45,6 @@ export const Budget = ({ budget }) => {
                         <span class="tooltiptext">{budget.alert}</span>
                     </div>
                 </div>
-                
-                {/* <button
-                    onClick={() => { deleteBudget(budget._id); openNotificationWithIcon('warning') }}
-                    className="delete-btn">
-                    x
-                </button> */}
             </li>
         </>
     );

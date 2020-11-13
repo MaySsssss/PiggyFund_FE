@@ -9,7 +9,7 @@
     border: none;
     border-radius: .5em;
     
-         /* Remove default arrow */
+    /* Remove default arrow */
     cursor: pointer;
     background-color: #fff;
 }

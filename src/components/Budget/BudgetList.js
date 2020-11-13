@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Budget } from './Budget';
 import { GlobalContext_budget } from '../../context/GlobalState_budget';
-// import { GlobalContext } from '../../context/GlobalState';
 import cookie from 'react-cookies'
 import moment from 'moment';
 
@@ -33,7 +32,6 @@ export const BudgetList = () => {
             });
         });
 
-        // const convertToCurrency = cookie.load('currency');
         const rates = cookie.load('rate');
 
         results.forEach(function (b) {
@@ -43,12 +41,8 @@ export const BudgetList = () => {
             b.Spent = b.Progress * newAmount;
             b.newAmount = newAmount;
 
-            // b.Progress = b.Spent / b.Amount;
-            // b.Spent = b.Progress * b.Amount;
-
             if(b.Progress >= 0.50 && b.Progress < 1) {
                 b.alert = 'be careful';
-                // console.log('over 50')
             } else if (b.Progress >= 1){
                 b.alert = "exceed";
             }else{
@@ -62,7 +56,7 @@ export const BudgetList = () => {
     const budgetsWithProgress = calculateProgress(budgets, transactions);
 
     function budgetListContent(budgets) {
-        if (budgets.length == 0) {
+        if (budgets.length === 0) {
             return (<p>There is no budget in this month.</p>);
         } else {
             return (budgets.map(budget => {

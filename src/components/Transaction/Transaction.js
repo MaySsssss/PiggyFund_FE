@@ -33,12 +33,6 @@ export const Transaction = ({ transaction }) => {
       {transaction.Category} 
       <p><Moment format="YYYY-MM-DD HH:mm:ss">{transaction.Time}</Moment></p>
       <span className="thick">{sign} {Math.abs(transaction.newAmount)} {convertToCurrency}</span>
-      {/* <button 
-        onClick={() => {deleteTransaction(transaction._id); openNotificationWithIcon('warning')}} 
-        className="delete-btn">
-          x
-      </button> */}
-      {/* <ExitToAppIcon style={{ color: '#404040', fontSize: 24 }} onClick={logout} /> */}
       <DeleteOutlineIcon 
         style={{ color: '#c0392b', fontSize: 24 }}
         onClick={() => {deleteTransaction(transaction._id); openNotificationWithIcon('warning')}} 

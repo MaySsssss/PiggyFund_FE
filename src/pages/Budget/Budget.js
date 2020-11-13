@@ -10,7 +10,6 @@ import '../Tracker/Tracker.css'
 import { notification, Drawer, Form, Col, Row} from 'antd';
 
 import cookie from 'react-cookies'
-import { Balance } from '../../components/Transaction/Balance';
 
 function onOk(value) {
     console.log('onOk: ', value);
@@ -57,13 +56,13 @@ export default class Budget extends Component {
     addBudget = _ => {
         const { datas } = this.state;
         let userid = loginUser();
-        if (datas.category.length == 0) {
+        if (datas.category.length === 0) {
             notification['error']({
                 message: 'Add',
                 description:
                     'Please enter the category name.',
             });
-        } else if (datas.amount.length == 0 || parseInt(datas.amount) <= 0) {
+        } else if (datas.amount.length === 0 || parseInt(datas.amount) <= 0) {
             notification['error']({
                 message: 'Add',
                 description:
@@ -89,7 +88,6 @@ export default class Budget extends Component {
             <GlobalProvider_budget>
                 <div className="container">
                   <div className="left_container">
-                    {/* <h3>Save Future Money</h3> */}
                     <h3>Your Budget</h3>
                     <Chart />
                     <Balance_budget />

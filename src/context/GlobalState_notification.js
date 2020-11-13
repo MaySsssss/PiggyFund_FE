@@ -3,12 +3,6 @@ import moment from 'moment';
 import cookie from 'react-cookies';
 import './global.css';
 
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-
-function onOk(value) {
-    console.log('onOk: ', value);
-}
-
 var ITME_API = `https://be-4920.herokuapp.com/getreminder`;
 
 export const loginUser = () => {
@@ -38,7 +32,6 @@ export const GlobalProvider_notification = ({ children }) => {
         let arr = [...arr1];
         let newarr = [];
         let userid = loginUser();
-        // console.log("window", parseInt(userid))
         for (const value of arr) {
             if (value.UserID === parseInt(userid)) {
               newarr.push(value);

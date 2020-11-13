@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import img_may from '../../picture/may.jpg'
 import img_ken from '../../picture/ken.jpg'
 import cookie from 'react-cookies'
@@ -81,7 +80,6 @@ const Profile = ({ className, ...rest }) => {
                     variant="body1"
                 >
                     <span>Save Money for My Future</span>
-                    {/* {`${moment().format('hh:mm A')}`} */}
                 </Typography>
             </Box>
         </>

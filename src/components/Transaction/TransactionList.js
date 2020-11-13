@@ -7,7 +7,7 @@ export const TransactionList = () => {
   const { transactions } = useContext(GlobalContext);
 
     function transactionListContent(transactions) {
-        if (transactions.length == 0) {
+        if (transactions.length === 0) {
             return (<p>There is no transaction in this month.</p>);
         } else {
             return (transactions.map(transaction => {
