@@ -34,12 +34,8 @@ const useStyles = makeStyles(() => ({
 const Profile = ({ className, ...rest }) => {
   const classes = useStyles();
 
-  return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <CardContent>
+    return (
+      <>
         <Box
           alignItems="center"
           display="flex"
@@ -49,6 +45,7 @@ const Profile = ({ className, ...rest }) => {
             className={classes.avatar}
             src={user.avatar}
           />
+                <div style={{ height: 40 }}></div>
           <Typography
             color="textPrimary"
             gutterBottom
@@ -70,9 +67,7 @@ const Profile = ({ className, ...rest }) => {
             {`${moment().format('hh:mm A')} ${user.timezone}`}
           </Typography>
         </Box>
-      </CardContent>
-      <Divider />
-    </Card>
+            </>
   );
 };
 

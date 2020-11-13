@@ -23,31 +23,10 @@ export default class Account extends Component {
   render() {
     return(
 
-      <div>
+      <div className="container">
         <h1>Account</h1>
 	      
-	      <Container maxWidth="lg">
-	        <Grid
-	            item
-	            lg={4}
-	            md={6}
-	            xs={12}
-	          >
-	            <div className="left_container">
 	              <Profile />
-	          	</div>
-	        </Grid>
-	        <Grid
-	            item
-	            lg={12}
-	            md={16}
-	            xs={12}
-	          >
-	        		<div className="right_container">
-	              <ProfileDetails />
-	            </div>
-	        </Grid>
-	        </Container>
       </div>
     )
   }
