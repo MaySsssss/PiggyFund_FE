@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import img_may from '../../picture/may.jpg'
+import img_ken from '../../picture/ken.jpg'
+import cookie from 'react-cookies'
+
 import {
     Avatar,
     Box,
@@ -8,12 +12,30 @@ import {
     makeStyles
 } from '@material-ui/core';
 
+const get_pic = () => {
+    let userid = cookie.load('userInfo')
+    if (userid === "1") {
+        return img_may;
+    } else {
+        return img_ken;
+    }
+}
+
+const get_name = () => {
+    let userid = cookie.load('userInfo')
+    if (userid === "1") {
+        return "May Li";
+    } else {
+        return "Ken Wang";
+    }
+}
+
 const user = {
-    avatar: '/static/images/avatars/avatar_6.png',
+    avatar: get_pic(),
     city: 'Sydney',
     country: 'Australia',
     jobTitle: 'Software Developer',
-    name: 'Kenneth Biden',
+    name: get_name(),
 
 };
 
@@ -58,7 +80,8 @@ const Profile = ({ className, ...rest }) => {
                     color="textSecondary"
                     variant="body1"
                 >
-                    {`${moment().format('hh:mm A')}`}
+                    <span>Save Money for My Future</span>
+                    {/* {`${moment().format('hh:mm A')}`} */}
                 </Typography>
             </Box>
         </>
