@@ -1,5 +1,7 @@
 import React from 'react';
 import { notification } from 'antd';
+import Moment from 'react-moment';
+import './Navbar.css';
 
 export const Reminder = ({ reminder }) => {
     function deleteReminder(id) {
@@ -20,9 +22,10 @@ export const Reminder = ({ reminder }) => {
 
     return (
         <>
-            <li className="budgetBox">
-                <div className="budgetInfo">
-                    {reminder.Message}
+            <li>
+                <div className="message">
+                    <div>{reminder.Message}</div>
+                    <div className="notificationTime"><Moment format="YYYY-MM-DD">{reminder.Time}</Moment></div>
                 </div>
 
                 <button

@@ -60,10 +60,18 @@
     z-index: 1;
     top: 50px;
     right: 0px;
-
 }
 
 .notifier:hover .notification {
     visibility: visible;
 }
 
+.notificationTime {
+    color: grey;
+    font-size: 10px;
+}
+
+.message {
+    flex: 1;
+    flex-direction: row;
+}
