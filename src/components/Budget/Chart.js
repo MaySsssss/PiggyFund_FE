@@ -1,5 +1,5 @@
 
-import {Bar, Doughnut} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 import { GlobalContext_budget } from '../../context/GlobalState_budget';
 import { ColourGenerator } from './ColourGenerator';
 import React, { useContext } from 'react';
@@ -54,28 +54,11 @@ export const Chart = () => {
             }
     }
 
-    const scale = {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-
     return (
     <h2>
         <Doughnut
         data={state}
         options={options}
-        />
-        <Bar
-                data={state}
-                width={100}
-                height={50}
-                // eslint-disable-next-line no-sequences
-                options={options, scale}
         />
     </h2>
     )

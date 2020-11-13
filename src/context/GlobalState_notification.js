@@ -24,10 +24,7 @@ export const GlobalProvider_notification = ({ children }) => {
             const url = `${ITME_API}`
             const response = await fetch(url)
             const data = await response.json()
-            setList(data.filter(message => {
-                var diff = moment(message.Date).endOf('day').diff(moment(), "days");
-                return diff >= 0 && diff < 1;
-            }))
+            setList(data)
         }
         fetchData()
     });
