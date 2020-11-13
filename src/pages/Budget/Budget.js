@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import { Chart } from '../../components/Budget/Chart';
+import { Balance_budget } from '../../components/Budget/Balance';
 import { BudgetList } from '../../components/Budget/BudgetList';
 import { GlobalProvider_budget } from '../../context/GlobalState_budget';
 import moment, { months } from 'moment';
@@ -9,6 +10,7 @@ import '../Tracker/Tracker.css'
 import { notification, Drawer, Form, Col, Row} from 'antd';
 
 import cookie from 'react-cookies'
+import { Balance } from '../../components/Transaction/Balance';
 
 function onOk(value) {
     console.log('onOk: ', value);
@@ -88,7 +90,9 @@ export default class Budget extends Component {
                 <div className="container">
                   <div className="left_container">
                     {/* <h3>Save Future Money</h3> */}
+                    <h3>Your Budget</h3>
                     <Chart />
+                    <Balance_budget />
                     <button className='back-btn' onClick={this.showDrawer} type="primary">Add Budget</button>
                   </div>
 

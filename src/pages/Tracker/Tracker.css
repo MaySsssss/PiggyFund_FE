@@ -97,6 +97,24 @@ h4 {
   border-right: 1px solid #dedede;
 }
 
+.inc-exp-container-budget {
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 10px;
+}
+
+.inc-exp-container-budget > div {
+  flex: 1;
+  text-align: center;
+}
+
+.inc-exp-container-budget > div:first-of-type {
+  border-right: 1px solid #dedede;
+}
+
 .money {
   font-size: 20px;
   letter-spacing: 1px;
