@@ -13,7 +13,7 @@ const user = {
     city: 'Sydney',
     country: 'Australia',
     jobTitle: 'Software Developer',
-    name: 'Joseph Biden',
+    name: 'Kenneth Biden',
 
 };
 
