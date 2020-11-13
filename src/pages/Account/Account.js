@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cookie from 'react-cookies';
 import { notification, Drawer, Form, Col, Row, DatePicker } from 'antd';
 import moment from 'moment';
+import Profile from './Profile';
 
 import './account.css'
 
@@ -116,19 +117,23 @@ export default class Account extends Component {
       <option key={currency} value={currency}> {currency} </option>      
     );
     return (
-      <div>
-        <label className="currency-font">
-          Currency: 
-          <select 
-            className="currency-select" 
-            value={cookie.load('currency')} 
-            onChange={this.changeBaseCurrency}
-          >
-            {currencyChoice}
-            <option>{cookie.load('currency')}</option>
-          </select>
-        </label>
-        <button className='back-btn' onClick={this.showDrawer} type="primary">Add Notification</button>
+    <div>
+        <h1>Account</h1>
+        <Profile />
+        <div>
+            <label className="currency-font">
+              Currency: 
+              <select 
+                className="currency-select" 
+                value={cookie.load('currency')} 
+                onChange={this.changeBaseCurrency}
+              >
+                {currencyChoice}
+                <option>{cookie.load('currency')}</option>
+              </select>
+            </label>
+        </div>
+            <button className='back-btn' onClick={this.showDrawer} type="primary" style={{width: 520}}>Add Notification</button>
 
             <Drawer
                 title="Add a new notification"
