@@ -118,7 +118,7 @@ export default class Account extends Component {
     );
     return (
     <div>
-        <h1>Account</h1>
+        <div style={{ height: 60 }}></div>
         <Profile />
         <div>
             <label className="currency-font">
