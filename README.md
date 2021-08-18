@@ -10,13 +10,10 @@ node js
 mongo DB
 
 ## How to run it
-### Download the .zip or git clone into the direction 
-
-### cd into the '4920_project' folder
-
-### run `npm i` or `yarn install` to install all dependecy or packets 
-
-### run `npm start` or `yarn start` to start the project 
+Download the .zip or git clone into the direction  
+cd into the '4920_project' folder 
+run `npm i` or `yarn install` to install all dependecy or packets  
+run `npm start` or `yarn start` to start the project 
 
 ## Login Page
 Account: may@gmail.com  
